@@ -1,2 +1,3 @@
 # GSIBerror
-A Python class to read and plot records from the GSI background error matrix.
+
+Uma classe para ler e plotar os records da matriz B do GSI.

@@ -6,7 +6,7 @@ site_description: Site com a documentação e exemplos de uso do GSIBerror
 # Repository
 repo_name: cfbastarz/GSIBerror
 repo_url: https://github.com/cfbastarz/GSIBerror
-edit_uri: edit/main/docs/
+edit_uri: edit/master/docs/
 
 # Page tree
 nav:

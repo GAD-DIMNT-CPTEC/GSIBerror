@@ -19,6 +19,7 @@ theme:
   language: pt-BR
   palette:
     primary: light blue
+    accent: light blue
   features:
     - content.tabs.link
 #    - navigation.instant

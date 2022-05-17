@@ -8,7 +8,9 @@ Nesta página são apresentados alguns exemplos de uso da classe `GSIBerror`. No
 
     Uma versão desta página para o Jupyter Notebook pode ser encontrada em [https://github.com/cfbastarz/GSIBerror/blob/main/read_gsi_berror_python-class-final.ipynb](https://github.com/cfbastarz/GSIBerror/blob/main/read_gsi_berror_python-class-final.ipynb). 
 
-    No mesmo repositório, há outros Notebooks que também podem ser consultados.
+    Se preferir interagir com o notebook, utilize o Binder, basta clicar no botão abaixo.
+
+    [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cfbastarz/GSIBerror/main)
 
 ## A classe `GSIBerror`
 

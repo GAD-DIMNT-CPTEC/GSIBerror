@@ -8,7 +8,7 @@ Nesta página são apresentados alguns exemplos de uso da classe `GSIBerror`. No
 
     Uma versão desta página para o Jupyter Notebook pode ser encontrada em [https://github.com/cfbastarz/GSIBerror/blob/main/read_gsi_berror_python-class-final.ipynb](https://github.com/cfbastarz/GSIBerror/blob/main/read_gsi_berror_python-class-final.ipynb). 
 
-    Se preferir interagir com o notebook, utilize o Binder, basta clicar no botão abaixo.
+    Se preferir interagir com o notebook, clique no botão abaixo para utilizar o Binder.
 
     [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cfbastarz/GSIBerror/main)
 
@@ -21,6 +21,7 @@ Para utilizar a classe, carregue-a com o comando a seguir:
     ```python linenums="1"
     from GSIBerror import Berror
     ```
+
 Os módulos a seguir são opcionais e podem ser carregados caso o usuário queira plotar os records da matriz. O módulo `cartopy` é carregado para plotar as linhas de costa dos records relacionados com a `sst` (temperatura da superfície do mar) apenas, visto que os demais records, são dependentes apenas das latitudes:
 
 === "Comando"
@@ -33,6 +34,11 @@ Os módulos a seguir são opcionais e podem ser carregados caso o usuário queir
     
     %matplotlib inline
     ```
+
+!!! info "Observação"
+
+    No repositório, está disponível o script [`plot_functions.py`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/plot_functions.py) onde estão implementadas algumas funções de plotagem auxiliares para a utilização do módulo GSIBerror. Veja um exemplo da sua utilização no notebook [`read_gsi_berror_python-class-final-BCPTEC_hyb_coord-compara-exemplos.ipynb`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/read_gsi_berror_python-class-final-BCPTEC_hyb_coord-compara-exemplos.ipynb). Nesse notebook, diferente do que é apresentado neste manual de uso, são utilizadas duas matrizes com a mesma quantidade de níveis verticais.
+
 
 ## Definição dos arquivos de covariâncias
 

@@ -1,17 +1,23 @@
 # Project information
 site_name: GSIBerror
 site_author: Carlos Frederico Bastarz
-site_description: Site com a documentação e exemplos de uso do GSIBerror
+site_description: A Python class to access, read and plot information from the background error covariance matrix from the GSI (Gridpoint Statistical Interpolation)
 
 # Repository
-repo_name: cfbastarz/GSIBerror
-repo_url: https://github.com/cfbastarz/GSIBerror
+repo_name: GAD-DIMNT-CPTEC/GSIBerror
+repo_url: https://github.com/GAD-DIMNT-CPTEC/GSIBerror
 edit_uri: edit/master/docs/
 
 # Page tree
 nav:
-  - 'Instalação': instalacao.md
-  - 'Uso': uso_gsiberror.md
+  - English:
+    - en/index.md
+    - Installation: en/install.md
+    - Usage: en/usage.md
+  - Português:
+    - GSIBerror: pt/index.md
+    - Instalação: pt/instalacao.md
+    - Uso: pt/uso_gsiberror.md
 
 #Configuration
 theme: 
@@ -24,7 +30,7 @@ theme:
     - content.tabs.link
 #    - navigation.instant
 #    - navigation.tracking
-#    - navigation.tabs
+    - navigation.tabs
     - navigation.tabs.sticky
 #    - navigation.sections
 #    - navigation.top
@@ -56,24 +62,25 @@ markdown_extensions:
   - pymdownx.tilde
   - md_in_html
   - pymdownx.superfences
+  - attr_list
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.arithmatex:
       generic: true
-  - attr_list
 #  - pymdownx.emoji:
 #      emoji_index: !!python/name:materialx.emoji.twemoji
 #      emoji_generator: !!python/name:materialx.emoji.to_svg
 
-#extra_javascript:
-#  - javascripts/mathjax.js
-#  - https://polyfill.io/v3/polyfill.min.js?features=es6
-#  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 # Plugins
 plugins:
   - mkdocs-video
   - search
+    #  - mkdocs_pymdownx_material_extras
 #  - with-pdf
 #  - mkdocs-jupyter
 #  - mkdocs-jupyter:

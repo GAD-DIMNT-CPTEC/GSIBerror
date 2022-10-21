@@ -8,8 +8,8 @@ class Berror(object):
     Berror
     ======
         
-    Classe com métodos para ler todos os records de uma matriz de covariâncias compatível com o GSI (formato .gcv).
-        
+    Class with methods to read all the records of a GSI compatible background error covariance matrix (.gcv format).    
+
     """    
     
     def __init__(self, file_name):
@@ -21,38 +21,38 @@ class Berror(object):
         read_records
         ------------
         
-        Este método lê os três primeiros records da matriz de covariâncias (nlat, nlon e nsig) e
-        os utiliza para calcular o tamanho dos demais records da matriz. Todos os atributos da matriz lida
-        são providos por esta função. A plotagem dos records é feita a partir do método 'plot()' do xarray;
-        dependendo do uso, pode ser necessário carregar os módulos matplotlib e cartopy.
+        This method reads the first three records of the background error covariance matrix (nlat, nlon and nsig).
+        These records are used to calculate the size of the remainder records from the matrix. All attributes read from
+        the matrix are provided by this function. The plotting of the records are made through the use of the xarray's 'plot()'
+        method; depending on the use, it can be necessary to to load the matplotlib and cartopy modules.
         
         Parâmetros de entrada
         ---------------------
-            Nenhum.
-        
-        Resultado
-        ---------
-            bfile: objeto criado com os records e os atributos da matriz de covariâncias (veja a lista a seguir)
+            None.
+
+        Result
+        ------
+            bfile: object created with the records and attributes from the background error covariance matrix (see the list below)
                    
-        Atributos disponíveis
-        ---------------------
-            file_name         : string com o nome do arquivo lido
-            nlat              : integer com o número de pontos de latitude
-            nlon              : integer com o número de pontos de longitude
-            nsig              : integer com o número de níveis verticais
-            lats              : nd-array com as latitudes (-90 a 90)
-            lons              : nd-array com as longitudes (0 a 360)
-            levs              : nd-array com os níveis (1 a nsig)
-            amplitudes        : dicionário de xarrays com as amplitudes das variáveis
-            amplitudes_names  : nomes das variáveis que compoem o dicionário amplitudes
-            balprojs          : dicionário de xarrays com as matrizes de projeção da temperatura, 
-                                pressão e velocidade potencial
-            hscales           : dicionário de xarrays com os comprimentos de escala horizontais
-            hscales_var_names : nomes das variáveis que compoem o dicionário hscales
-            vscales           : dicionário de xarrays com os comprimentos de escala verticais
-            vscales_var_names : nomes das variáveis que compoem o dicionário vscales
+        Available attributes
+        --------------------
+            file_name         : string with the name of the file
+            nlat              : integer with the number of latitude points 
+            nlon              : integer with the number of longitude points 
+            nsig              : integer with the number of vertical levels
+            lats              : nd-array with the latitude values (-90 to 90)
+            lons              : nd-array with the longitude values (0 to 360)
+            levs              : nd-array with the vertical levels (1 to nsig)
+            amplitudes        : dicionary with the xarrays for the control variables amplitudes
+            amplitudes_names  : names of the variables in the amplitudes dictionary
+            balprojs          : dictionary with xarrays for the regression coefficients matrices for the temperature, 
+                                surface pressure and velocity potential
+            hscales           : dictionary with xarrays for the horizontal length scales
+            hscales_var_names : names of the variables in the hscales dictionary
+            vscales           : dictionary with xarrays for the vertical length scales
+            vscales_var_names : names of the variables in the vscales dictionary
                     
-        Uso
+        Use
         ---
             from GSIBerror import Berror
         
@@ -71,13 +71,13 @@ class Berror(object):
             bfile_amp_sf.plot.contourf()    
         """
     
-        # Lê os três primeiros records para definir a grade
+        # Reads the first three records to define the grid
         dt = np.dtype([ ('grid', '3>i4') ])
 
         with open(self.file_name, 'rb') as ftmp:
             fobj = np.fromfile(ftmp, dtype=dt, count=3, offset=4)  
         
-        # Calcula as coordenadas para as dimensões lats, lons e levs
+        # Calculate the coordinates for lats, lons and levs dimensions
         nsig = fobj[0]['grid'][0]
         nlat = fobj[0]['grid'][1]
         nlon = fobj[0]['grid'][2]
@@ -90,14 +90,14 @@ class Berror(object):
         self.lons = np.linspace(0,360, self.nlon)
         self.levs = np.arange(1, self.nsig+1)
         
-        # Define os tamanhos dos records dentro do arquivo ('>f4' indica floats de 32 bits, big endian)   
+        # Define the records sizes from within the file ('>f4' indicates 32 bits floats, big endian)
         tnlat = str(self.nlat) + '>f4'
         s2d = str(self.nlat*self.nsig) + '>f4'
         sst2d = str(self.nlat*self.nlon) + '>f4'
         s3d = str(self.nlat*self.nsig*self.nsig) + '>f4'
 
-        # Define a estrutura e o tamanho do records dentro do arquivo ('padX' = 4 bytes; '>i4' indica integer de 32 bits, big endian)  
-        # Talvez esta não seja a forma mais inteligente de se fazer isso, mas pelo menos é explícito
+        # Define a structure for the records within the file ('padX' = 4 bytes; '>i4' indicates 32 bits integers, big endian)
+        # Maybe this isn't the best way to read the records but it is explicity, at least
         dt =          [ ('grid', '3>i4'), 
                    
                         ('pad1', '>i4'), ('agvin',s3d), 
@@ -142,15 +142,15 @@ class Berror(object):
                         ('pad60', '>i4'), ('corsstin_sst', sst2d), ('pad61', '>i4'), 
                         ('pad62', '>i4'), ('hsstin_ps', sst2d), ('pad63', '>i4') ]   
     
-        dt_obj = np.dtype(dt)#, align=True) # align=True deveria automaticamente 
-                                            # contabilizar 4 bytes antes de depois dos records
+        dt_obj = np.dtype(dt)#, align=True) # align=True should be automatic (?) 
+                                            # accounts fo the 4 bytes padding (before and after the records)
     
-        # Abre novamente o arquivo para ler todos os records
+        # Opens the file again to read all the records
         with open(self.file_name, 'rb') as ftmp:
-            fobj = np.fromfile(ftmp, dtype=dt_obj, count=-1, offset=4) # count=-1 lê todo o arquivo
+            fobj = np.fromfile(ftmp, dtype=dt_obj, count=-1, offset=4) # count=-1 reads the whole file
     
         #
-        # Leitura dos Records - Matrizes de Projeção  
+        # Records reading - Regression coefficients (balance projection matrices)  
         #
         
         balprojs = {} 
@@ -179,7 +179,7 @@ class Berror(object):
         balprojs['wgvin'] = da_wgvin      
         
         #
-        # Leitura dos Records - Amplitudes (desvios-padrão)
+        # Records reading - Amplitudes (standard deviations)
         #
         
         amplitudes = {}
@@ -200,7 +200,7 @@ class Berror(object):
         
         self.amplitudes_names = amplitudes_names
         
-        # Loop sobre as variáveis para criar o dicionário de xarrays com as amplitudes        
+        # Loop over the variables to create a dictionary with xarrays for the amplitudes
         for var in amplitudes_names.items():
             if var[0] == 'ps':
                 corzin_var = np.reshape(fobj[0][var[1]], (self.nlat), order='F')
@@ -218,8 +218,8 @@ class Berror(object):
             amplitudes[var[0]] = da_corzin_var
         
         #
-        # Leitura dos Records - Comprimentos de escala horizontais (em metros) -> no plot_functions.py, os comprimentos de
-        #                                                                         de escala horizontais são divididos por 1000
+        # Records reading - Horizontal length scales (in meters) -> the in plot_functions.py script, the horizontal length scales
+        #                                                           are divides by 1000
         #
         
         hscales = {}
@@ -239,7 +239,7 @@ class Berror(object):
         
         self.hscales_var_names = hscales_var_names
         
-        # Loop sobre as variáveis para criar o dicionário de xarrays com os comprimentos de escala horizontais
+        # Loop over the variables to create a dictionary with xarrays for the horizontal length scales
         for var in hscales_var_names.items():
             if var[0] == 'ps':
                 hscalesin_var = np.reshape(fobj[0][var[1]], (self.nlat), order='F')
@@ -257,7 +257,7 @@ class Berror(object):
             hscales[var[0]] = da_hscalesin_var           
         
         #
-        # Leitura dos Records - Comprimentos de escala verticais
+        # Records reading - Vertical length scales
         #
         
         vscales = {}
@@ -275,7 +275,7 @@ class Berror(object):
         
         self.vscales_var_names = vscales_var_names
         
-        # Loop sobre as variáveis para criar o dicionário de xarrays com os comprimentos de escala verticais
+        # Loop over the variables to create a dictionary with xarrays for the vertical length scales
         for var in vscales_var_names.items():
             if var[0] == 'ps':
                 vscalesin_var = np.reshape(fobj[0][var[1]], (self.nlat), order='F')

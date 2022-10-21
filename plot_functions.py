@@ -7,38 +7,40 @@ from mpl_toolkits import axes_grid1
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 
+# This function defines the names of the variables and mnemonics
 def var_name(var):    
     
     if var == 'sf':
-        vname = 'Função de Corrente'
+        vname = 'Stream function'
         vsimb = '$\psi$'
     elif var == 'vp':
-        vname = 'Velocidade Potencial'
+        vname = 'Velocity Potential'
         vsimb = '$\chi$'
     elif var == 't':
-        vname = 'Temperatura Virtual'
+        vname = 'Virtual Temperature'
         vsimb = '$tv$'
     elif var == 'q':
-        vname = 'Pseudo-Umidade Relativa - qoption=1'
+        vname = 'Pseudo-Relative Humidity - qoption=1'
         vsimb = '$rh_{p}$'
     elif var == 'qin':
-        vname = 'Umidade Relativa Normalizada - qoption=2'   
+        vname = 'Normalizes Relative Humidity - qoption=2'   
         vsimb = '$rh_{n}$'
     elif var == 'oz':
-        vname = 'Ozônio'        
+        vname = 'Ozone'        
         vsimb = '$oz$'
     elif var == 'ps':
-        vname = 'Pressão em Superfície' 
+        vname = 'Surface Pressure' 
         vsimb = '$ps$'
     elif var == 'cw':
-        vname = 'Conteúdo de Água Líquida' 
+        vname = 'Liquid Cloud Water Content' 
         vsimb = '$cw$'
     elif var == 'sst':
-        vname = 'Temperatura da Superfície do Mar'     
+        vname = 'Sea Surface Temperature'     
         vsimb = '$sst$'
     
     return vname, vsimb
 
+# This function defines global values of min and max given two xarrays
 def global_minmax(l_matrix, t_array, m_rec):
 
     lmin = []
@@ -64,6 +66,7 @@ def global_minmax(l_matrix, t_array, m_rec):
 
     return min(lmin), max(lmax)
 
+# This function plots the regression coefficients
 def plot_reg_coeffs(lmatrix, rec, lev, **kwargs):
           
     if 'eqrange' in kwargs:
@@ -109,20 +112,20 @@ def plot_reg_coeffs(lmatrix, rec, lev, **kwargs):
         ax = fig.add_subplot(spec[i])
         
         if rec == 'agvin':
-            nrec = 'Temperatura Virtual'
+            nrec = 'Virtual Temperature'
             if eqrange:
                 im = lmatrix[i].balprojs[str(rec)].isel(level_2=lev).plot.contourf(vmin=minval, vmax=maxval, add_colorbar=True, cbar_kwargs=cbar_kwargs, ax=ax)
             else:
                 im = lmatrix[i].balprojs[str(rec)].isel(level_2=lev).plot.contourf(add_colorbar=True, cbar_kwargs=cbar_kwargs, ax=ax)
         elif rec == 'bgvin':
-            nrec = 'Velocidade Potencial'
+            nrec = 'Velocity Potencial'
             if eqrange:
                 im = lmatrix[i].balprojs[str(rec)].plot.contourf(vmin=minval, vmax=maxval, add_colorbar=True, cbar_kwargs=cbar_kwargs, ax=ax)
             else:
                 im = lmatrix[i].balprojs[str(rec)].plot.contourf(add_colorbar=True, cbar_kwargs=cbar_kwargs, ax=ax)
         elif rec == 'wgvin':
-            nrec = 'Pressão em Superfície'  
-            # Obs.: multiplicando por 1e1 para ficar comparável com https://dtcenter.ucar.edu/com-GSI/users/docs/presentations/2011_tutorial/L8_06302011-BkgObsErrs-DarylKleist.pdf
+            nrec = 'Surface Pressure'  
+            # Note: multiplying by 1e2 (100) to make it comparable to https://dtcenter.ucar.edu/com-GSI/users/docs/presentations/2011_tutorial/L8_06302011-BkgObsErrs-DarylKleist.pdf
             wgproj = lmatrix[i].balprojs[str(rec)]*1e2
             if eqrange:
                 im = wgproj.isel(level=0,latitude=slice(0,-2)).plot.line(ylim=[minval.data, maxval.data], ax=ax)
@@ -133,11 +136,11 @@ def plot_reg_coeffs(lmatrix, rec, lev, **kwargs):
         
         if suptitle:
             if rec == 'agvin':
-                sptitle = plt.suptitle('Projeção da Função de Corrente ($\psi$) no nível ' + str(lev) + ' sobre o perfil vertical da parte balanceada da ' + str(nrec) + ' ($\mathbf{G}_{'+str(lev)+'}$): $T_{b}=\mathbf{G}\psi$', y=1.05, fontsize=16)
+                sptitle = plt.suptitle('Projection of the Stream Function ($\psi$) at the level ' + str(lev) + ' over the vertical profile of the balanced part of ' + str(nrec) + ' ($\mathbf{G}_{'+str(lev)+'}$): $T_{b}=\mathbf{G}\psi$', y=1.05, fontsize=16)
             elif rec == 'bgvin':
-                sptitle = plt.suptitle('Projeção da Função de Corrente ($\psi$) sobre parte balanceada da ' + str(nrec) + ' ($\mathbf{c}$): $\chi_{b}=\mathbf{c}\psi$', y=1.05, fontsize=16)
+                sptitle = plt.suptitle('Projection of the Stream Function ($\psi$) over the balanced part of ' + str(nrec) + ' ($\mathbf{c}$): $\chi_{b}=\mathbf{c}\psi$', y=1.05, fontsize=16)
             elif rec == 'wgvin':    
-                sptitle = plt.suptitle('Projeção da Função de Corrente ($\psi$) sobre parte balanceada da ' + str(nrec) + ' ($\mathbf{w}$): $ps_{b}=\mathbf{w}\psi$', y=1.05, fontsize=16)
+                sptitle = plt.suptitle('Projection of the Stream Function of the Stream Function ($\psi$) over the balanced part of ' + str(nrec) + ' ($\mathbf{w}$): $ps_{b}=\mathbf{w}\psi$', y=1.05, fontsize=16)
                         
     if savefig:
         if suptitle:
@@ -145,6 +148,7 @@ def plot_reg_coeffs(lmatrix, rec, lev, **kwargs):
         else:
             fig.savefig('reg_coeffs_' + str(rec) + '.png', dpi=fig.dpi, bbox_inches='tight') 
 
+# This function plot the amplitudes
 def plot_amplitudes(lmatrix, rec, **kwargs): 
     
     if 'eqrange' in kwargs:
@@ -224,16 +228,16 @@ def plot_amplitudes(lmatrix, rec, **kwargs):
                 ax.add_feature(cfeature.NaturalEarthFeature('physical', 'land', '110m', edgecolor='face', facecolor='white'))
                 ax.coastlines() 
             elif rec == 'qin':
-                # Obs1: slice(0,25) está sendo usado para plotar apenas o primeiro 1/4 do campo
-                # na tentativa de se obter uma informação comparável com a https://dtcenter.ucar.edu/com-GSI/users/docs/presentations/2011_tutorial/L8_06302011-BkgObsErrs-DarylKleist.pdf
-                # Obs2: multiplicado por 1e2 (100) para ficar comparável com o documento acima
+                # Note 1: slice(0,25) is applied to plot just the first quarter of the field
+                # in an attempt to retrieve something comparable to https://dtcenter.ucar.edu/com-GSI/users/docs/presentations/2011_tutorial/L8_06302011-BkgObsErrs-DarylKleist.pdf
+                # Note 2: multiplying by 1e2 (100) to make it comparable to the above document
                 ampqin = lmatrix[i].amplitudes[str(rec)]*1e2
                 if eqrange:
                     im = ampqin.isel(latitude=slice(0,25)).drop('latitude').plot.contourf(ax=ax, vmin=minval, vmax=maxval, add_colorbar=True, cbar_kwargs=cbar_kwargs, add_labels=False)
                 else:
                     im = ampqin.isel(latitude=slice(0,25)).drop('latitude').plot.contourf(ax=ax, add_colorbar=True, cbar_kwargs=cbar_kwargs, add_labels=False)
             elif rec == 'q':
-                # Obs: multiplicado por 1e2 (100) para ficar comparável com o documento acima
+                # Note: multiplying by 1e2 (100) to make it comparable to the above document
                 ampq = lmatrix[i].amplitudes[str(rec)]*1e2
                 if eqrange:
                     im = ampq.plot.contourf(ax=ax, vmin=minval, vmax=maxval, add_colorbar=True, cbar_kwargs=cbar_kwargs)
@@ -258,18 +262,20 @@ def plot_amplitudes(lmatrix, rec, **kwargs):
         
         if suptitle:
             if rec == 'sf':
-                sptitle = plt.suptitle('Desvio Padrão da ' + str(nrec) + ' (' + str(srec) + ')', y=1.05, fontsize=16)      
+                sptitle = plt.suptitle('Standard Deviation of ' + str(nrec) + ' (' + str(srec) + ')', y=1.05, fontsize=16)      
             elif rec == 'q' or rec == 'qin':    
-                sptitle = plt.suptitle('Desvio Padrão da Parte não balanceada da ' + str(nrec) + ' (' + str(srec) + ', %)', y=1.05) 
+                sptitle = plt.suptitle('Standard Deviation of the unbalanced part of ' + str(nrec) + ' (' + str(srec) + ', %)', y=1.05) 
             else:
-                sptitle = plt.suptitle('Desvio Padrão da Parte não balanceada da ' + str(nrec) + ' (' + str(srec) + ')', y=1.05) 
+                #sptitle = plt.suptitle('Desvio Padrão da Parte não balanceada da ' + str(nrec) + ' (' + str(srec) + ')', y=1.05) 
+                sptitle = plt.suptitle('Standard Deviation of the unbalanced part of ' + str(nrec) + ' (' + str(srec) + ')', y=1.05) 
                 
     if savefig:
         if suptitle:
             fig.savefig('amplitudes_' + str(rec) + '.png', dpi=fig.dpi, bbox_inches='tight', bbox_extra_artists=[sptitle])         
         else:
             fig.savefig('amplitudes_' + str(rec) + '.png', dpi=fig.dpi, bbox_inches='tight') 
-                
+
+# This function plots the horizontal length scales                
 def plot_hscales(lmatrix, rec, **kwargs): 
           
     if 'eqrange' in kwargs:
@@ -332,7 +338,7 @@ def plot_hscales(lmatrix, rec, **kwargs):
         else:
             ax = plt.subplot(spec[i])
        
-        # m -> km (para ficar consistente com https://dtcenter.ucar.edu/com-GSI/users/docs/presentations/2011_tutorial/L8_06302011-BkgObsErrs-DarylKleist.pdf
+        # m -> km (to make it consistent with https://dtcenter.ucar.edu/com-GSI/users/docs/presentations/2011_tutorial/L8_06302011-BkgObsErrs-DarylKleist.pdf
         hscl = lmatrix[i].hscales[str(rec)]*1e-3
     
         if rec == 'sst':  
@@ -357,14 +363,15 @@ def plot_hscales(lmatrix, rec, **kwargs):
             ax.set_title(str(lmatrix[i].get_name()) + ' (' + str(lmatrix[i].nsig) + ' níveis)')
         
         if suptitle:
-            sptitle = plt.suptitle('Comprimento de Escala Horizontal da ' + str(nrec) + ' (' + str(srec) + ', km)', y=1.05, fontsize=16)
+            sptitle = plt.suptitle('Horizontal Length Scale of ' + str(nrec) + ' (' + str(srec) + ', km)', y=1.05, fontsize=16)
             
     if savefig:
         if suptitle:
             fig.savefig('hscales_' + str(rec) + '.png', dpi=fig.dpi, bbox_inches='tight', bbox_extra_artists=[sptitle])         
         else:
             fig.savefig('hscales_' + str(rec) + '.png', dpi=fig.dpi, bbox_inches='tight')             
-            
+
+# This function plots vertical length scales            
 def plot_vscales(lmatrix, rec, **kwargs):   
 
     if 'eqrange' in kwargs:
@@ -432,7 +439,7 @@ def plot_vscales(lmatrix, rec, **kwargs):
         ax.set_title(str(lmatrix[i].get_name()) + ' (' + str(lmatrix[i].nsig) + ' níveis)')
     
         if suptitle:
-            sptitle = plt.suptitle('Comprimento de Escala Vertical da ' + str(nrec) + ' (' + str(srec) + ', unidades de grade)', y=1.05, fontsize=16)
+            sptitle = plt.suptitle('Vertical Length Scale of ' + str(nrec) + ' (' + str(srec) + ', grid units)', y=1.05, fontsize=16)
             
     if savefig:
         if suptitle:

@@ -87,38 +87,38 @@ O método `read_records` é utilizado para ler todos os records (coeficientes de
         read_records
         ------------
         
-        Este método lê os três primeiros records da matriz de covariâncias (nlat, nlon e nsig) e
-        os utiliza para calcular o tamanho dos demais records da matriz. Todos os atributos da matriz lida
-        são providos por esta função. A plotagem dos records é feita a partir do método 'plot()' do xarray;
-        dependendo do uso, pode ser necessário carregar os módulos matplotlib e cartopy.
+        This method reads the first three records of the background error covariance matrix (nlat, nlon and nsig).
+        These records are used to calculate the size of the remainder records from the matrix. All attributes read from
+        the matrix are provided by this function. The plotting of the records are made through the use of the xarray's 'plot()'
+        method; depending on the use, it can be necessary to to load the matplotlib and cartopy modules.
         
-        Parâmetros de entrada
-        ---------------------
-            Nenhum.
-        
-        Resultado
-        ---------
-            bfile: objeto criado com os records e os atributos da matriz de covariâncias (veja a lista a seguir)
+        Input parameters
+        ----------------
+            None.
+
+        Result
+        ------
+            bfile: object created with the records and attributes from the background error covariance matrix (see the list below)
                    
-        Atributos disponíveis
-        ---------------------
-            file_name         : string com o nome do arquivo lido
-            nlat              : integer com o número de pontos de latitude
-            nlon              : integer com o número de pontos de longitude
-            nsig              : integer com o número de níveis verticais
-            lats              : nd-array com as latitudes (-90 a 90)
-            lons              : nd-array com as longitudes (0 a 360)
-            levs              : nd-array com os níveis (1 a nsig)
-            amplitudes        : dicionário de xarrays com as amplitudes das variáveis
-            amplitudes_names  : nomes das variáveis que compoem o dicionário amplitudes
-            balprojs          : dicionário de xarrays com as matrizes de projeção da temperatura, 
-                                pressão e velocidade potencial
-            hscales           : dicionário de xarrays com os comprimentos de escala horizontais
-            hscales_var_names : nomes das variáveis que compoem o dicionário hscales
-            vscales           : dicionário de xarrays com os comprimentos de escala verticais
-            vscales_var_names : nomes das variáveis que compoem o dicionário vscales
+        Available attributes
+        --------------------
+            file_name         : string with the name of the file
+            nlat              : integer with the number of latitude points 
+            nlon              : integer with the number of longitude points 
+            nsig              : integer with the number of vertical levels
+            lats              : nd-array with the latitude values (-90 to 90)
+            lons              : nd-array with the longitude values (0 to 360)
+            levs              : nd-array with the vertical levels (1 to nsig)
+            amplitudes        : dicionary with the xarrays for the control variables amplitudes
+            amplitudes_names  : names of the variables in the amplitudes dictionary
+            balprojs          : dictionary with xarrays for the regression coefficients matrices for the temperature, 
+                                surface pressure and velocity potential
+            hscales           : dictionary with xarrays for the horizontal length scales
+            hscales_var_names : names of the variables in the hscales dictionary
+            vscales           : dictionary with xarrays for the vertical length scales
+            vscales_var_names : names of the variables in the vscales dictionary
                     
-        Uso
+        Use
         ---
             from GSIBerror import Berror
         
@@ -134,7 +134,7 @@ O método `read_records` é utilizado para ler todos os records (coeficientes de
             
             bfile_amp_sf = bfile.amplitudes['sf']
             
-            bfile_amp_sf.plot.contourf()
+            bfile_amp_sf.plot.contourf()    
     ``` 
 
 Leituras dos records e atributos das matrizes a partir das instâncias `ncep_b` e `cptec_b` criadas:

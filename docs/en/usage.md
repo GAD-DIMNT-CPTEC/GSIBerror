@@ -492,10 +492,10 @@ Note that the horizontal regression coefficients for the temperature `agvin` hav
     ncep_b.balprojs['agvin'].isel(sigma_2=0).plot.contourf(ax=ax[0])#, vmin=0, vmax=5e-7)
     cptec_b.balprojs['agvin'].isel(sigma_2=0).plot.contourf(ax=ax[1])#, vmin=0, vmax=5e-7)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Coeficientes de Regressão Função de Corrente sobre a parte balanceada da Temperatura (agvin, sigma_2=0)')
+    plt.suptitle('Projection of the Stream Function ($\psi$) at the level 0 over the balanced part of Temperature (agvin, sigma_2=0)')
     plt.show()
     ```
 
@@ -513,10 +513,10 @@ And for the last level, for both matrices:
     ncep_b.balprojs['agvin'].isel(sigma_2=-1).plot.contourf(ax=ax[0])#, vmin=0, vmax=5e-7)
     cptec_b.balprojs['agvin'].isel(sigma_2=-1).plot.contourf(ax=ax[1])#, vmin=0, vmax=5e-7)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Coeficientes de Regressão Função de Corrente sobre a parte balanceada da Temperatura (wgvin, sigma_2=-1)')
+    plt.suptitle('Projection of the Stream Function ($\psi$) at the level -1 over the balanced part of Temperature (agvin, sigma_2=-1)')
     plt.show()
     ```
 
@@ -534,10 +534,10 @@ For the `bgvin` record:
     ncep_b.balprojs['bgvin'].plot.contourf(ax=ax[0])#, vmin=0, vmax=0.5)
     cptec_b.balprojs['bgvin'].plot.contourf(ax=ax[1])#, vmin=0, vmax=0.5)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Coeficientes de Regressão Função de Corrente sobre a parte balanceada da Velocidade Potencial (bgvin)')
+    plt.suptitle('Projection of the Stream Function ($\psi$) over the balanced part of Potential Velocity (bgvin)')
     plt.show()
     ```
 
@@ -555,10 +555,10 @@ For the `wgvin` record:
     ncep_b.balprojs['wgvin'].plot.contourf(ax=ax[0])#, vmin=-3e-7, vmax=3e-7)
     cptec_b.balprojs['wgvin'].plot.contourf(ax=ax[1])#, vmin=-3e-7, vmax=3e-7)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Coeficientes de Regressão Função de Corrente sobre a parte balanceada da Pressão em Superfície (wgvin)')
+    plt.suptitle('Projection of the Stream Function ($\psi$) over the balanced part of Surface Pressure (wgvin)')
     plt.show()
     ```
 
@@ -578,10 +578,10 @@ To check and compare the amplitudes from the instances `ncep_b` and `cptec_b`, s
     ncep_b.amplitudes['sf'].plot.contourf(ax=ax[0])#, vmin=0, vmax=6e6)
     cptec_b.amplitudes['sf'].plot.contourf(ax=ax[1])#, vmin=0, vmax=6e6)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Desvio Padrão da Parte não balanceada da Função de Corrente (sf)')
+    plt.suptitle('Standard Deviation of the unbalanced part of Stream Function (sf)')
     plt.show()
     ```
 
@@ -599,10 +599,10 @@ In the following example, the vertical profiles from the amplitudes of the strea
     ncep_b.amplitudes['sf'].mean(dim='latitude').plot(ax=ax[0], y='sigma')
     cptec_b.amplitudes['sf'].mean(dim='latitude').plot(ax=ax[1], y='sigma')
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Perfil do Desvio Padrão da Parte não balanceada da Função de Corrente (sf)')
+    plt.suptitle('Vertical Profile of the Standard Deviation of the unbalanced part of Stream Function (sf)')
     plt.show()
     ```
 
@@ -621,10 +621,10 @@ For the velocity potential (`vp`):
     ncep_b.amplitudes['vp'].plot.contourf(ax=ax[0])#, vmin=0, vmax=6e6)
     cptec_b.amplitudes['vp'].plot.contourf(ax=ax[1])#, vmin=0, vmax=6e6)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Desvio Padrão da Parte não balanceada da Velocidade Potencial (vp)')
+    plt.suptitle('Standard Deviation of the unbalanced part of Velocity Potential Function (vp)')
     plt.show()
     ```
 
@@ -642,10 +642,10 @@ For the vertical profile of the velocity potential (`vp`):
     ncep_b.amplitudes['vp'].mean(dim='latitude').plot(ax=ax[0], y='sigma')
     cptec_b.amplitudes['vp'].mean(dim='latitude').plot(ax=ax[1], y='sigma')
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Perfil do Desvio Padrão da Parte não balanceada da Velocidade Potencial (vp)')
+    plt.suptitle('Vertical Profile of the Standard Deviation of the unbalanced part of Velocity Potential (vp)')
     plt.show()
     ```
 
@@ -663,10 +663,10 @@ For the temperature (`t`):
     ncep_b.amplitudes['t'].plot.contourf(ax=ax[0])#, vmin=0, vmax=5)
     cptec_b.amplitudes['t'].plot.contourf(ax=ax[1])#, vmin=0, vmax=5)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Desvio Padrão da Parte não balanceada da Temperatura (t)')
+    plt.suptitle('Standard Deviation of the unbalanced part of Temperature (t)')
     plt.show()
     ```
 
@@ -684,10 +684,10 @@ For the vertical profile of the temperature (`t`):
     ncep_b.amplitudes['t'].mean(dim='latitude').plot(ax=ax[0], y='sigma')
     cptec_b.amplitudes['t'].mean(dim='latitude').plot(ax=ax[1], y='sigma')
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Perfil do Desvio Padrão da Parte não balanceada da Temperatura (t)')
+    plt.suptitle('Vertical Profile of the Standard Deviation of the unbalanced part of Temperature (t)')
     plt.show()
     ```
 
@@ -705,10 +705,10 @@ For the relative humidity (`q`):
     ncep_b.amplitudes['q'].plot.contourf(ax=ax[0])#, vmin=0, vmax=0.5)
     cptec_b.amplitudes['q'].plot.contourf(ax=ax[1])#, vmin=0, vmax=0.5)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Desvio Padrão da Umidade Relativa (q)')
+    plt.suptitle('Standard Deviation of Relative Humidity (q)')
     plt.show()
     ```
 
@@ -726,10 +726,10 @@ For the vertical profile of the relative humidity (`q`):
     ncep_b.amplitudes['q'].mean(dim='latitude').plot(ax=ax[0], y='sigma')
     cptec_b.amplitudes['q'].mean(dim='latitude').plot(ax=ax[1], y='sigma')
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Perfil do Desvio Padrão da Umidade Relativa (q)')
+    plt.suptitle('Vertical Profile of the Standard Deviation of Relative Humidity (q)')
     plt.show()
     ```
 
@@ -747,10 +747,10 @@ For the ozone (`oz`):
     ncep_b.amplitudes['oz'].plot.contourf(ax=ax[0])#, vmin=0, vmax=7.5e-7)
     cptec_b.amplitudes['oz'].plot.contourf(ax=ax[1])#, vmin=0, vmax=7.5e-7)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Desvio Padrão do Ozônio (oz)')
+    plt.suptitle('Standard Deviation of Ozone (oz)')
     plt.show()
     ```
 
@@ -768,10 +768,10 @@ For the vertical profile of the ozone (`oz`):
     ncep_b.amplitudes['oz'].mean(dim='latitude').plot(ax=ax[0], y='sigma')
     cptec_b.amplitudes['oz'].mean(dim='latitude').plot(ax=ax[1], y='sigma')
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Perfil do Desvio Padrão do Ozônio (oz)')
+    plt.suptitle('Vertical Profile of the Standard Deviation of Ozone (oz)')
     plt.show()
     ```
 
@@ -789,10 +789,10 @@ For the cloud water content (`cw`):
     ncep_b.amplitudes['cw'].plot.contourf(ax=ax[0])#, vmin=0, vmax=7.5e-7)
     cptec_b.amplitudes['cw'].plot.contourf(ax=ax[1])#, vmin=0, vmax=7.5e-7)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Desvio Padrão do Conteúdo de Água Líquida em Nuvens (cw)')
+    plt.suptitle('Standard Deviation of Cloud Water (cw)')
     plt.show()
     ```
 
@@ -810,10 +810,10 @@ For the vertical profile of the cloud water content (`cw`):
     ncep_b.amplitudes['cw'].mean(dim='latitude').plot(ax=ax[0], y='sigma')
     cptec_b.amplitudes['cw'].mean(dim='latitude').plot(ax=ax[1], y='sigma')
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Perfil do Desvio Padrão do Conteúdo de Água Líquida em Nuvens (cw)')
+    plt.suptitle('Vertical Profile of the Standard Deviation of Cloud Water (cw)')
     plt.show()
     ```
 
@@ -834,7 +834,7 @@ For the surface pressure (`ps`):
     ax[0].set_title('NCEP')
     ax[1].set_title('CPTEC')
     
-    plt.suptitle('Desvio Padrão da Pressão em Superfície (ps)')
+    plt.suptitle('Standard Deviation of Surface Pressure (ps)')
     plt.show()
     ```
 === "Result"
@@ -863,7 +863,7 @@ In the next figures, the amplitudes of the sea surface temperature (`sst`) for t
     ax1.set_title('NCEP')
     ax2.set_title('CPTEC')
     
-    plt.suptitle('Desvio Padrão da Temperatura da Superfície do Mar (sst)')
+    plt.suptitle('Standard Deviation of Sea Surface Temperature (sst)')
     plt.show()
     ```
 
@@ -883,10 +883,10 @@ In the same manner we did for the amplitudes, the horizontal length scales from 
     ncep_b.hscales['sf'].plot.contourf(ax=ax[0])#, vmin=0, vmax=1.5e6)
     cptec_b.hscales['sf'].plot.contourf(ax=ax[1])#, vmin=0, vmax=1.5e6)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Comprimentos de Escala Horizontais da Função de Corrente (sf)')
+    plt.suptitle('Horizontal Length Scale of Stream Function (sf)')
     plt.show()
     ```
 
@@ -904,10 +904,10 @@ For the velocity potential (`vp`):
     ncep_b.hscales['vp'].plot.contourf(ax=ax[0])#, vmin=0, vmax=1.5e6)
     cptec_b.hscales['vp'].plot.contourf(ax=ax[1])#, vmin=0, vmax=1.5e6)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Comprimentos de Escala Horizontais da Velocidade Potencial (vp)')
+    plt.suptitle('Horizontal Length Scale of Velocity Potential (vp)')
     plt.show()
     ```
 
@@ -925,10 +925,10 @@ For the temperature (`t`):
     ncep_b.hscales['t'].plot.contourf(ax=ax[0])#, vmin=0, vmax=3.5e5)
     cptec_b.hscales['t'].plot.contourf(ax=ax[1])#, vmin=0, vmax=3.5e5)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Comprimentos de Escala Horizontais da Temperatura (t)')
+    plt.suptitle('Horizontal Length Scale of Temperature (t)')
     plt.show()
     ```
 
@@ -946,10 +946,10 @@ For the relative humidity (`q`):
     ncep_b.hscales['q'].plot.contourf(ax=ax[0])#, vmin=0, vmax=1.5e5)
     cptec_b.hscales['q'].plot.contourf(ax=ax[1])#, vmin=0, vmax=1.5e5)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Comprimentos de Escala Horizontais da Umidade Relativa (q)')
+    plt.suptitle('Horizontal Length Scale of Relative Humidity (q)')
     plt.show()
     ```
 
@@ -967,10 +967,10 @@ For the ozone (`oz`):
     ncep_b.hscales['oz'].plot.contourf(ax=ax[0])#, vmin=0, vmax=2.5e5)
     cptec_b.hscales['oz'].plot.contourf(ax=ax[1])#, vmin=0, vmax=2.5e5)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Comprimentos de Escala Horizontais Ozônio (oz)')
+    plt.suptitle('Horizontal Length Scale of Ozone (oz)')
     plt.show()
     ```
 
@@ -988,10 +988,10 @@ For the surface pressure (`ps`):
     ncep_b.hscales['ps'].plot(ax=ax[0])#, vmin=0, vmax=2.5e5)
     cptec_b.hscales['ps'].plot(ax=ax[1])#, vmin=0, vmax=2.5e5)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Comprimentos de Escala Horizontais Pressão em Superfície (ps)')
+    plt.suptitle('Horizontal Length Scale of Surface Pressure (ps)')
     plt.show()
     ```
 
@@ -1021,7 +1021,7 @@ For the sea surface temperature (`sst`):
     ax1.set_title('NCEP')
     ax2.set_title('CPTEC')
     
-    plt.suptitle('Comprimentos de Escala Horizontais da Temperatura da Superfície do Mar (sst)')
+    plt.suptitle('Horizontal Length Scale of Sea Surface Temperature (ps)')
     plt.show()
     ```
 
@@ -1041,10 +1041,10 @@ In the same manner we did for the amplitudes, the vertical length scales from th
     ncep_b.vscales['sf'].plot.contourf(ax=ax[0])#, vmin=0, vmax=2.5e5)
     cptec_b.vscales['sf'].plot.contourf(ax=ax[1])#, vmin=0, vmax=2.5e5)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Comprimentos de Escala Verticais da Função de Corrente (sf)')
+    plt.suptitle('Vertical Length Scale of Stream Function (sf)')
     plt.show()
     ```
 
@@ -1062,10 +1062,10 @@ For the velocity potential (`vp`):
     ncep_b.vscales['vp'].plot.contourf(ax=ax[0])#, vmin=0, vmax=2.5e5)
     cptec_b.vscales['vp'].plot.contourf(ax=ax[1])#, vmin=0, vmax=2.5e5)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Comprimentos de Escala Verticais da Velocidade Potencial (vp)')
+    plt.suptitle('Vertical Length Scale of Velocity Potential (vp)')
     plt.show()
     ```
 
@@ -1083,10 +1083,10 @@ For the temperature (`t`):
     ncep_b.vscales['t'].plot.contourf(ax=ax[0])#, vmin=0, vmax=2.5e5)
     cptec_b.vscales['t'].plot.contourf(ax=ax[1])#, vmin=0, vmax=2.5e5)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Comprimentos de Escala Verticais da Temperatura (t)')
+    plt.suptitle('Vertical Length Scale of Temperature (t)')
     plt.show()
     ```
 
@@ -1104,10 +1104,10 @@ For the relative humidity (`q`):
     ncep_b.vscales['q'].plot.contourf(ax=ax[0])#, vmin=0, vmax=2.5e5)
     cptec_b.vscales['q'].plot.contourf(ax=ax[1])#, vmin=0, vmax=2.5e5)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Comprimentos de Escala Verticais da Umidade Relativa (q)')
+    plt.suptitle('Vertical Length Scale of Relative Humidity (q)')
     plt.show()
     ```
 
@@ -1125,10 +1125,10 @@ For the ozone (`oz`):
     ncep_b.vscales['oz'].plot.contourf(ax=ax[0])#, vmin=0, vmax=2.5e5)
     cptec_b.vscales['oz'].plot.contourf(ax=ax[1])#, vmin=0, vmax=2.5e5)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Comprimentos de Escala Verticais do Ozônio (oz)')
+    plt.suptitle('Vertical Length Scale of Ozone (oz)')
     plt.show()
     ```
 
@@ -1146,10 +1146,10 @@ For the cloud water content (`cw`):
     ncep_b.vscales['cw'].plot.contourf(ax=ax[0])#, vmin=0, vmax=2.5e5)
     cptec_b.vscales['cw'].plot.contourf(ax=ax[1])#, vmin=0, vmax=2.5e5)
     
-    ax[0].set_title('NCEP (64 níveis)')
-    ax[1].set_title('CPTEC (28 níveis)')
+    ax[0].set_title('NCEP (64 levels)')
+    ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Comprimentos de Escala Verticais do Conteúdo de Água Líquida em Nuvens (cw)')
+    plt.suptitle('Vertical Length Scale of Cloud Water (cw)')
     plt.show()
     ```
 

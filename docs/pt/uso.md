@@ -572,6 +572,10 @@ Para o record `wgvin`:
 
 Para verificar e comparar as amplitudes das instâncias `ncep_b` e `cptec_b`, siga os exemplos a seguir.
 
+!!! warning "Aviso"
+
+    Os records de ozônio, conteúdo de água líquida em nuvens e temperatura da superfície do mar (amplitudes e comprimentos de escala horizontais/verticais) são intencionalmente os mesmos entre as duas matrizes mostradas neste notebook. De fato, a matriz **B** do CPTEC empresta esses records da matriz **B** do NCEP (fornecida pelo _Developmental Testbed Center_ - DTC) para testes.
+
 === "Comando"
 
     ```python linenums="1"

@@ -570,6 +570,10 @@ For the `wgvin` record:
 
 To check and compare the amplitudes from the instances `ncep_b` and `cptec_b`, see the next examples.
 
+!!! warning "Warning"
+
+    The records of ozone, cloud water and sea surface temperature (amplitudes and horizontal/vertical length scales) are intentionally the same for both matrices displayed in this notebook. In fact, the CPTEC **B** matrix borrows these records from the NCEP **B** matrix (provides by the Developmental Testbed Center_ - DTC) for testing purposes.
+
 === "Command"
 
     ```python linenums="1"

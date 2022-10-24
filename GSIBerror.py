@@ -26,8 +26,8 @@ class Berror(object):
         the matrix are provided by this function. The plotting of the records are made through the use of the xarray's 'plot()'
         method; depending on the use, it can be necessary to to load the matplotlib and cartopy modules.
         
-        Parâmetros de entrada
-        ---------------------
+        Input parameters
+        ----------------
             None.
 
         Result

@@ -132,7 +132,7 @@ def plot_reg_coeffs(lmatrix, rec, lev, **kwargs):
             else:
                 im = wgproj.isel(level=0,latitude=slice(0,-2)).plot.line(ax=ax)     
          
-        ax.set_title(str(lmatrix[i].get_name()) + '\n' + str(lmatrix[i].nsig) + ' níveis')
+        ax.set_title(str(lmatrix[i].get_name()) + '\n' + str(lmatrix[i].nsig) + ' levels')
         
         if suptitle:
             if rec == 'agvin':
@@ -258,7 +258,7 @@ def plot_amplitudes(lmatrix, rec, **kwargs):
         if rec == 'sst':
             ax.set_title(str(lmatrix[i].get_name()))
         else:
-            ax.set_title(str(lmatrix[i].get_name()) + ' (' + str(lmatrix[i].nsig) + ' níveis)')      
+            ax.set_title(str(lmatrix[i].get_name()) + ' (' + str(lmatrix[i].nsig) + ' levels)')      
         
         if suptitle:
             if rec == 'sf':
@@ -360,7 +360,7 @@ def plot_hscales(lmatrix, rec, **kwargs):
         if rec == 'sst':
             ax.set_title(str(lmatrix[i].get_name()))   
         else:
-            ax.set_title(str(lmatrix[i].get_name()) + ' (' + str(lmatrix[i].nsig) + ' níveis)')
+            ax.set_title(str(lmatrix[i].get_name()) + ' (' + str(lmatrix[i].nsig) + ' levels)')
         
         if suptitle:
             sptitle = plt.suptitle('Horizontal Length Scale of ' + str(nrec) + ' (' + str(srec) + ', km)', y=1.05, fontsize=16)
@@ -436,7 +436,7 @@ def plot_vscales(lmatrix, rec, **kwargs):
         else:         
             lmatrix[i].vscales[str(rec)].plot.contourf(ax=ax, add_colorbar=True, cbar_kwargs=cbar_kwargs)
 
-        ax.set_title(str(lmatrix[i].get_name()) + ' (' + str(lmatrix[i].nsig) + ' níveis)')
+        ax.set_title(str(lmatrix[i].get_name()) + ' (' + str(lmatrix[i].nsig) + ' levels)')
     
         if suptitle:
             sptitle = plt.suptitle('Vertical Length Scale of ' + str(nrec) + ' (' + str(srec) + ', grid units)', y=1.05, fontsize=16)

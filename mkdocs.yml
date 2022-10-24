@@ -11,13 +11,13 @@ edit_uri: edit/master/docs/
 # Page tree
 nav:
   - English:
-    - en/index.md
+    - index.md
     - Installation: en/install.md
     - Usage: en/usage.md
   - Português:
     - GSIBerror: pt/index.md
     - Instalação: pt/instalacao.md
-    - Uso: pt/uso_gsiberror.md
+    - Uso: pt/uso.md
 
 #Configuration
 theme: 

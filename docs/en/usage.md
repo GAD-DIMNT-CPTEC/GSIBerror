@@ -1,4 +1,4 @@
-# Use 
+# Usage
 
 In this page are presented some use examples of the `GSIBerror` class. In these examples, there are considered two differente background error covariances matrices, one provided by the Developmental Testbed Center ([DTC](https://dtcenter.org/)) and another calculated by using pairs of 48 and 24 hours forecasts from the Braziliand Atmospheric Model (BAM) from the Center for Weather Forecasts and Climate Studies (CPTEC)[^1], using the NMC method.
 

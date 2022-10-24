@@ -1,4 +1,4 @@
-# Instalação
+# Installation
 
 Before using the class, make shure that it is accessible. In general, it can be put in the same directory of your working files.
 

@@ -1,2 +1,3 @@
-gcv/new_gsir4.berror_stats-tese-cfbastarz2017.gcv filter=lfs diff=lfs merge=lfs -text
-gcv/global_berror.l64y386.f77-ncep-dtc.gcv filter=lfs diff=lfs merge=lfs -text
+data/new_gsir4.berror_stats-tese-cfbastarz2017.gcv filter=lfs diff=lfs merge=lfs -text
+data/global_berror.l64y386.f77-ncep-dtc.gcv filter=lfs diff=lfs merge=lfs -text
+data/bcptec_bam_352pairs_gsir4.berror_stats.fix.oz.cw.tsm.gcv filter=lfs diff=lfs merge=lfs -text

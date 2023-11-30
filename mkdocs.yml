@@ -6,7 +6,7 @@ site_description: A Python class to access, read and plot information from the b
 # Repository
 repo_name: GAD-DIMNT-CPTEC/GSIBerror
 repo_url: https://github.com/GAD-DIMNT-CPTEC/GSIBerror
-edit_uri: edit/master/docs/
+edit_uri: edit/main/docs/
 
 # Page tree
 nav:

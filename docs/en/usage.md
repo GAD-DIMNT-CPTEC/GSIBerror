@@ -12,14 +12,14 @@ In this page are presented some use examples of the `GSIBerror` class. In these 
 
     [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cfbastarz/GSIBerror/main)
 
-## The `GSIBerror` class
+## The `Berror` class
 
 To use the class, load it with the following command:
 
 === "Command"
 
     ```python linenums="1"
-    from GSIBerror import Berror
+    import gsiberror as gb
     ```
 
 The following python modules are optional and can be loaded in case the user wants to plot the matrix records. The module `cartopy` is loaded to plot the coastlines for the records related to the `sst`(sea surface temperature) only, since the remainder of the records are latitude dependent.
@@ -55,6 +55,10 @@ In the following section, it is defined the file to be read. In this example, tw
     fcptec = os.path.join(path, bcptec)
     ```
 
+!!! warning "Warning"
+
+    The `path` variable must the set up by the user to reflect the correct path to where the matrices files `gsir4.berror_stats.gcv.BAM.TQ0062L028` and `global_berror.l64y386.f77-ncep-dtc.gcv` are.
+
 ## Using the `GSIBerror` class
 
 To use the class, it is necessary to create instances for each of the matrices to be read:
@@ -62,8 +66,8 @@ To use the class, it is necessary to create instances for each of the matrices t
 === "Command"
 
     ```python linenums="1"
-    ncep_b = Berror(fncep)
-    cptec_b = Berror(fcptec)
+    ncep_b = gb.Berror(fncep)
+    cptec_b = gb.Berror(fcptec)
 
     ```
 
@@ -74,7 +78,7 @@ The `read_records` method is used to read all of the records (ie., horizontal re
 === "Command"
 
     ```python linenums="1"
-    help(Berror.read_records)
+    help(gb.Berror.read_records)
     ```
 === "Result"
 
@@ -103,7 +107,7 @@ The `read_records` method is used to read all of the records (ie., horizontal re
             file_name         : string with the name of the file
             nlat              : integer with the number of latitude points 
             nlon              : integer with the number of longitude points 
-            nsig              : integer with the number of vertical levels
+            nlev              : integer with the number of vertical levels
             lats              : nd-array with the latitude values (-90 to 90)
             lons              : nd-array with the longitude values (0 to 360)
             levs              : nd-array with the vertical levels (1 to nsig)
@@ -118,13 +122,13 @@ The `read_records` method is used to read all of the records (ie., horizontal re
                     
         Use
         ---
-            from GSIBerror import Berror
+            import gsiberror as gb
         
-            bfile = Berror('arquivo_matriz_B.gcv')
+            bfile = gb.Berror('arquivo_matriz_B.gcv')
         
             bfile.read_records()
             
-            bfile.nlat, bfile.nlon, bfile.nsig
+            bfile.nlat, bfile.nlon, bfile.nlev
             
             bfile.amplitudes_names
             
@@ -154,12 +158,12 @@ To check the matrices attributes, just use the class instance for the desired ma
 
 * `nlat`: number of latitude points;
 * `nlon`: number of longitude points;
-* `nsig`: number of vertical levels.
+* `nlev`: number of vertical levels.
 
 === "Command"
 
     ```python linenums="1"
-    ncep_b.nlat, ncep_b.nlon, ncep_b.nsig
+    ncep_b.nlat, ncep_b.nlon, ncep_b.nlev
     ```
 
 === "Result"
@@ -173,7 +177,7 @@ Doing the same for the `cptec_b` instance:
 === "Command"
 
     ```python linenums="1"
-    cptec_b.nlat, cptec_b.nlon, cptec_b.nsig
+    cptec_b.nlat, cptec_b.nlon, cptec_b.nlev
     ```
 
 === "Result"

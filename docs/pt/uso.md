@@ -1,25 +1,27 @@
 # Uso 
 
-Nesta página são apresentados alguns exemplos de uso da classe `GSIBerror`. Nos exemplos, são consideradas duas matrizes de covariâncias, uma proveniente do _Developmental Testbed Center_ ([DTC](https://dtcenter.org/)) e outra calculada a partir dos pares de previsões do modelo de circulação geral da atmosfera do CPTEC[^1].
+Nesta página são apresentados alguns exemplos de uso do pacote `GSIBerror`. Nos exemplos, são consideradas duas matrizes de covariâncias, uma proveniente do _Developmental Testbed Center_ ([DTC](https://dtcenter.org/)) e outra calculada a partir dos pares de previsões do modelo de circulação geral da atmosfera do CPTEC[^1].
 
 [^1]: Matriz de Covariâncias dos Erros de Previsão Aplicada ao Sistema de Assimilação de Dados Global do CPTEC: Experimentos com Observação Única. Disponível em: [https://www.scielo.br/j/rbmet/a/8LQNdCV9jJM9whJdpkDLfCh/abstract/?lang=pt&format=html](https://www.scielo.br/j/rbmet/a/8LQNdCV9jJM9whJdpkDLfCh/abstract/?lang=pt&format=html).
 
 !!! info "Informação"
 
-    Uma versão desta página para o Jupyter Notebook pode ser encontrada em [https://github.com/cfbastarz/GSIBerror/blob/main/read_gsi_berror_python-class-final.ipynb](https://github.com/cfbastarz/GSIBerror/blob/main/read_gsi_berror_python-class-final.ipynb). 
+    Uma versão desta página para o Jupyter Notebook pode ser encontrada em [https://github.com/cfbastarz/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-pt.ipynb](https://github.com/cfbastarz/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-pt.ipynb). 
 
-    Se preferir interagir com o notebook, clique no botão abaixo para utilizar o Binder.
+    Se preferir interagir com o notebook, clique no botão abaixo para utilizar o Google Colab.
 
-    [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cfbastarz/GSIBerror/main)
+    <a target="_blank" href="https://colab.research.google.com/github/GAD-DIMNT-CPTEC/GSIBerror/blob/9-criar-um-instalador-para-o-gsiberror/notebooks/read_gsi_berror_python-class-final-pt.ipynb">
+      <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+    </a>
 
-## A classe `GSIBerror`
+## A classe `Berror`
 
-Para utilizar a classe, carregue-a com o comando a seguir:
+Para utilizar a classe `Berror`, carregue o pacote `gsiberror` com o comando a seguir:
 
 === "Comando"
 
     ```python linenums="1"
-    from GSIBerror import Berror
+    import gsiberror as gb
     ```
 
 Os módulos a seguir são opcionais e podem ser carregados caso o usuário queira plotar os records da matriz. O módulo `cartopy` é carregado para plotar as linhas de costa dos records relacionados com a `sst` (temperatura da superfície do mar) apenas, visto que os demais records, são dependentes apenas das latitudes:
@@ -37,7 +39,7 @@ Os módulos a seguir são opcionais e podem ser carregados caso o usuário queir
 
 !!! info "Observação"
 
-    No repositório, está disponível o script [`plot_functions.py`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/plot_functions.py) onde estão implementadas algumas funções de plotagem auxiliares para a utilização do módulo GSIBerror. Veja um exemplo da sua utilização no notebook [`read_gsi_berror_python-class-final-BCPTEC_hyb_coord-compara-exemplos.ipynb`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/read_gsi_berror_python-class-final-BCPTEC_hyb_coord-compara-exemplos.ipynb). Nesse notebook, diferente do que é apresentado neste manual de uso, são utilizadas duas matrizes com a mesma quantidade de níveis verticais.
+    No repositório, está disponível o script [`plot_functions.py`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/plot_functions.py) onde estão implementadas algumas funções de plotagem auxiliares para a utilização do pacote `GSIBerror`. As função contidas no script também estão disponíveis quando o pacote `GSIBerror` é instalado por meio do `pip` ou `conda`. Veja um exemplo da sua utilização no notebook [`read_gsi_berror_python-class-final-BCPTEC_hyb_coord-compara-exemplos-pt.ipynb`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-BCPTEC_hyb_coord-compara-exemplos-pt.ipynb). Nesse notebook, diferente do que é apresentado neste manual de uso, são utilizadas duas matrizes com a mesma quantidade de níveis verticais.
 
 
 ## Definição dos arquivos de covariâncias
@@ -57,6 +59,10 @@ A seguir, define-se o nome do arquivo a ser lido. No exemplo dado neste notebook
     fcptec = os.path.join(path, bcptec)
     ```
 
+!!! warning "Aviso"
+
+    A variável `path` deverá ser ajustada pelo usuário para refletir o caminho onde se encontram os arquivos das matrizes `gsir4.berror_stats.gcv.BAM.TQ0062L028` e `global_berror.l64y386.f77-ncep-dtc.gcv`.
+
 ## Utilização da classe `GSIBerror`
 
 Para utilizar a classe, é necessário criar uma instância para cada uma das matrizes a serem lidas:
@@ -64,9 +70,8 @@ Para utilizar a classe, é necessário criar uma instância para cada uma das ma
 === "Comando"
 
     ```python linenums="1"
-    ncep_b = Berror(fncep)
-    cptec_b = Berror(fcptec)
-
+    ncep_b = gb.Berror(fncep)
+    cptec_b = gb.Berror(fcptec)
     ```
 
 ## O método `read_records`
@@ -76,7 +81,7 @@ O método `read_records` é utilizado para ler todos os records (coeficientes de
 === "Comando"
 
     ```python linenums="1"
-    help(Berror.read_records)
+    help(gb.Berror.read_records)
     ```
 === "Resultado"
 
@@ -105,7 +110,7 @@ O método `read_records` é utilizado para ler todos os records (coeficientes de
             file_name         : string with the name of the file
             nlat              : integer with the number of latitude points 
             nlon              : integer with the number of longitude points 
-            nsig              : integer with the number of vertical levels
+            nlev              : integer with the number of vertical levels
             lats              : nd-array with the latitude values (-90 to 90)
             lons              : nd-array with the longitude values (0 to 360)
             levs              : nd-array with the vertical levels (1 to nsig)
@@ -120,13 +125,13 @@ O método `read_records` é utilizado para ler todos os records (coeficientes de
                     
         Use
         ---
-            from GSIBerror import Berror
+            import gsiberror as gb
         
-            bfile = Berror('arquivo_matriz_B.gcv')
+            bfile = gb.Berror('arquivo_matriz_B.gcv')
         
             bfile.read_records()
             
-            bfile.nlat, bfile.nlon, bfile.nsig
+            bfile.nlat, bfile.nlon, bfile.nlev
             
             bfile.amplitudes_names
             
@@ -148,7 +153,7 @@ Leituras dos records e atributos das matrizes a partir das instâncias `ncep_b` 
 
 ## Verificação dos atributos das matrizes
 
-A matriz de covariâncias utilizada pelo GSI possui uma série de records que podem ser verificados por meio da classe `GSIBerror`.
+A matriz de covariâncias utilizada pelo GSI possui uma série de records que podem ser verificados por meio da classe `Berror`.
 
 ### Dimensões das matrizes
 
@@ -156,12 +161,12 @@ Para verificar os atributos das matrizes, basta utilizar a instância da classe 
 
 * `nlat`: número de pontos de latitude;
 * `nlon`: número de pontos de longitude;
-* `nsig`: número de níveis verticais.
+* `nlev`: número de níveis verticais.
 
 === "Comando"
 
     ```python linenums="1"
-    ncep_b.nlat, ncep_b.nlon, ncep_b.nsig
+    ncep_b.nlat, ncep_b.nlon, ncep_b.nlev
     ```
 
 === "Resultado"
@@ -175,7 +180,7 @@ Da mesma forma, para `cptec_b`:
 === "Comando"
 
     ```python linenums="1"
-    cptec_b.nlat, cptec_b.nlon, cptec_b.nsig
+    cptec_b.nlat, cptec_b.nlon, cptec_b.nlev
     ```
 
 === "Resultado"

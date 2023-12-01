@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='GSIBerror',
-    version='1.2.1a1',
+    version='1.1.0a1',
     url='https://gad-dimnt-cptec.github.io/GSIBerror',
     author='Carlos Frederico Bastarz',
     author_email='carlos.bastarz@inpe.br',
@@ -11,7 +11,7 @@ setup(
     install_requires=[
         'numpy',
         'xarray',
-        'cartopy',
+        'cartopy==0.22.0',
         'matplotlib',
         ],
     classifiers=[
@@ -19,5 +19,5 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
     ],
-    python_requires='>=3.9',
+    python_requires='==3.9.18',
 )

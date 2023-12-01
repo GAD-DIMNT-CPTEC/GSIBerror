@@ -20,7 +20,7 @@ pip install GSIBerror
 É possível utilizar também o `conda` para a utilização do pacote `GSIBerror`. Da mesma forma como foi demonstrado com o `venv`, crie um ambiente com o `conda` e instale o pacote `GSIBerror` utilizando o `pip`: 
 
 ```bash linenums="1"
-conda create -n GSIBerror python=3.8.2
+conda create -n GSIBerror python=3.9.18
 conda activate GSIBerror
 pip install GSIBerror
 ```    

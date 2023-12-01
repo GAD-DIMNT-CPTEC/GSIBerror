@@ -27,7 +27,7 @@ theme:
     primary: light blue
     accent: light blue
   features:
-    - content.tabs.link
+#    - content.tabs.link
 #    - navigation.instant
 #    - navigation.tracking
     - navigation.tabs

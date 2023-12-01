@@ -6,11 +6,13 @@ In this page are presented some use examples of the `GSIBerror` class. In these 
 
 !!! info "Info"
 
-    A version of this page for the Juptyter Notebook can be fount at [https://github.com/cfbastarz/GSIBerror/blob/main/read_gsi_berror_python-class-final.ipynb](https://github.com/cfbastarz/GSIBerror/blob/main/read_gsi_berror_python-class-final.ipynb).
+    A version of this page for the Juptyter Notebook can be fount at [https://github.com/cfbastarz/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-en.ipynb](https://github.com/cfbastarz/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-en.ipynb).
 
-    If you want to interact with the notebook, click on buttom below to load the Binder.
+    If you want to interact with the notebook, click on buttom below to open Google Colab.
 
-    [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cfbastarz/GSIBerror/main)
+    <a target="_blank" href="https://colab.research.google.com/github/GAD-DIMNT-CPTEC/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-en.ipynb">
+      <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+    </a>
 
 ## The `Berror` class
 

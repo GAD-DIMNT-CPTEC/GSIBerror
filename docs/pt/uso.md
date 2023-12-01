@@ -10,7 +10,7 @@ Nesta página são apresentados alguns exemplos de uso do pacote `GSIBerror`. No
 
     Se preferir interagir com o notebook, clique no botão abaixo para utilizar o Google Colab.
 
-    <a target="_blank" href="https://colab.research.google.com/github/GAD-DIMNT-CPTEC/GSIBerror/blob/9-criar-um-instalador-para-o-gsiberror/notebooks/read_gsi_berror_python-class-final-pt.ipynb">
+    <a target="_blank" href="https://colab.research.google.com/github/GAD-DIMNT-CPTEC/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-pt.ipynb">
       <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
     </a>
 

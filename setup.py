@@ -9,6 +9,10 @@ setup(
     description='A Python class to read the records and attributes from the background error covariance matrices compatible with the Gridpoint Statistical Interpolation (in the .gcv file format).',
     packages=find_packages(),
     install_requires=[
+        'numpy',
+        'xarray',
+        'cartopy',
+        'matplotlib',
         ],
     classifiers=[
         'Programming Language :: Python :: 3',

@@ -207,7 +207,7 @@ Para verificar os records das matrizes, basta utilizar a instância da classe pa
 === "Resultado"
 
     ```python linenums="1"
-    {'agvin': <xarray.DataArray 'agvin' (sigma: 64, latitude: 386, sigma_2: 64)>
+    {'agvin': <xarray.DataArray 'agvin' (level: 64, latitude: 386, level_2: 64)>
      array([[[ 9.1390668e-39, -1.4570713e-08, -1.4229909e-08, ...,
                1.9885631e-07, -3.0927532e-07, -1.5866360e-07],
              [ 1.9645067e-07,  2.0414565e-07,  2.1749047e-07, ...,
@@ -251,9 +251,9 @@ Para verificar os records das matrizes, basta utilizar a instância da classe pa
               -3.0927532e-07, -1.5866360e-07,  4.0107770e-07]]], dtype=float32)
      Coordinates:
        * latitude  (latitude) float64 -90.0 -89.53 -89.06 -88.6 ... 89.06 89.53 90.0
-       * sigma     (sigma) int64 1 2 3 4 5 6 7 8 9 10 ... 56 57 58 59 60 61 62 63 64
-       * sigma_2   (sigma_2) int64 1 2 3 4 5 6 7 8 9 ... 56 57 58 59 60 61 62 63 64,
-     'bgvin': <xarray.DataArray 'bgvin' (sigma: 64, latitude: 386)>
+       * level     (level) int64 1 2 3 4 5 6 7 8 9 10 ... 56 57 58 59 60 61 62 63 64
+       * level_2   (level_2) int64 1 2 3 4 5 6 7 8 9 ... 56 57 58 59 60 61 62 63 64,
+     'bgvin': <xarray.DataArray 'bgvin' (level: 64, latitude: 386)>
      array([[ 0.31404725,  0.31404725,  0.31410804, ..., -0.3134667 ,
              -0.31346098, -0.31346098],
             [ 0.309024  ,  0.309024  ,  0.30907533, ..., -0.30182734,
@@ -269,8 +269,8 @@ Para verificar os records das matrizes, basta utilizar a instância da classe pa
               0.0516182 ,  0.0516182 ]], dtype=float32)
      Coordinates:
        * latitude  (latitude) float64 -90.0 -89.53 -89.06 -88.6 ... 89.06 89.53 90.0
-       * sigma     (sigma) int64 1 2 3 4 5 6 7 8 9 10 ... 56 57 58 59 60 61 62 63 64,
-     'wgvin': <xarray.DataArray 'wgvin' (sigma: 64, latitude: 386)>
+       * level     (level) int64 1 2 3 4 5 6 7 8 9 10 ... 56 57 58 59 60 61 62 63 64,
+     'wgvin': <xarray.DataArray 'wgvin' (level: 64, latitude: 386)>
      array([[-2.0349323e-07, -2.0356120e-07, -2.0368390e-07, ...,
               2.4741092e-07,  2.4741092e-07,  0.0000000e+00],
             [ 0.0000000e+00,  0.0000000e+00,  0.0000000e+00, ...,
@@ -286,7 +286,7 @@ Para verificar os records das matrizes, basta utilizar a instância da classe pa
               0.0000000e+00,  0.0000000e+00,  9.1390668e-39]], dtype=float32)
      Coordinates:
        * latitude  (latitude) float64 -90.0 -89.53 -89.06 -88.6 ... 89.06 89.53 90.0
-       * sigma     (sigma) int64 1 2 3 4 5 6 7 8 9 10 ... 56 57 58 59 60 61 62 63 64}
+       * level     (level) int64 1 2 3 4 5 6 7 8 9 10 ... 56 57 58 59 60 61 62 63 64}
     ```
 
 Observe que os records de `balprojs` estão armazenados em um dicionário com três elementos `agvin`, `bgvin` e `wgvin`. Estes são os coeficientes de regressão horizontais do GSI, utilizados para construir a parte balanceada da temperatura, velocidade potencial e pressão em superfície:
@@ -312,7 +312,7 @@ Estes records com os coeficientes de regressão podem ser inspecionados da segui
 === "Resultado"
 
     ```python linenums="1"
-    <xarray.DataArray 'agvin' (sigma: 64, latitude: 386, sigma_2: 64)>
+    <xarray.DataArray 'agvin' (level: 64, latitude: 386, level_2: 64)>
     array([[[ 9.1390668e-39, -1.4570713e-08, -1.4229909e-08, ...,
               1.9885631e-07, -3.0927532e-07, -1.5866360e-07],
             [ 1.9645067e-07,  2.0414565e-07,  2.1749047e-07, ...,
@@ -356,8 +356,8 @@ Estes records com os coeficientes de regressão podem ser inspecionados da segui
              -3.0927532e-07, -1.5866360e-07,  4.0107770e-07]]], dtype=float32)
     Coordinates:
       * latitude  (latitude) float64 -90.0 -89.53 -89.06 -88.6 ... 89.06 89.53 90.0
-      * sigma     (sigma) int64 1 2 3 4 5 6 7 8 9 10 ... 56 57 58 59 60 61 62 63 64
-      * sigma_2   (sigma_2) int64 1 2 3 4 5 6 7 8 9 ... 56 57 58 59 60 61 62 63 64
+      * level     (level) int64 1 2 3 4 5 6 7 8 9 10 ... 56 57 58 59 60 61 62 63 64
+      * level_2   (level_2) int64 1 2 3 4 5 6 7 8 9 ... 56 57 58 59 60 61 62 63 64
     ```
 
 Para `bgvin`:
@@ -371,7 +371,7 @@ Para `bgvin`:
 === "Resultado"
 
     ```python linenums="1"
-    <xarray.DataArray 'bgvin' (sigma: 64, latitude: 386)>
+    <xarray.DataArray 'bgvin' (level: 64, latitude: 386)>
     array([[ 0.31404725,  0.31404725,  0.31410804, ..., -0.3134667 ,
             -0.31346098, -0.31346098],
            [ 0.309024  ,  0.309024  ,  0.30907533, ..., -0.30182734,
@@ -387,7 +387,7 @@ Para `bgvin`:
              0.0516182 ,  0.0516182 ]], dtype=float32)
     Coordinates:
       * latitude  (latitude) float64 -90.0 -89.53 -89.06 -88.6 ... 89.06 89.53 90.0
-      * sigma     (sigma) int64 1 2 3 4 5 6 7 8 9 10 ... 56 57 58 59 60 61 62 63 64
+      * level     (level) int64 1 2 3 4 5 6 7 8 9 10 ... 56 57 58 59 60 61 62 63 64
     ```
 
 Para `wgvin`:
@@ -400,7 +400,7 @@ Para `wgvin`:
 === "Resultado"
 
     ```python linenums="1"
-    <xarray.DataArray 'wgvin' (sigma: 64, latitude: 386)>
+    <xarray.DataArray 'wgvin' (level: 64, latitude: 386)>
     array([[-2.0349323e-07, -2.0356120e-07, -2.0368390e-07, ...,
              2.4741092e-07,  2.4741092e-07,  0.0000000e+00],
            [ 0.0000000e+00,  0.0000000e+00,  0.0000000e+00, ...,
@@ -416,7 +416,7 @@ Para `wgvin`:
              0.0000000e+00,  0.0000000e+00,  9.1390668e-39]], dtype=float32)
     Coordinates:
       * latitude  (latitude) float64 -90.0 -89.53 -89.06 -88.6 ... 89.06 89.53 90.0
-      * sigma     (sigma) int64 1 2 3 4 5 6 7 8 9 10 ... 56 57 58 59 60 61 62 63 64
+      * level     (level) int64 1 2 3 4 5 6 7 8 9 10 ... 56 57 58 59 60 61 62 63 64
     ```
 
 Para obter os valores mínimos e máximos, eg., dos coeficientes de regressão da velocidade potencial (`bgvin`), pode-se utilizar os métodos `min()` ou `max()` do módulo `xarray`:
@@ -489,20 +489,20 @@ Para `cptec_b`:
     
 Para comparar os coeficientes de projeção das matrizes instanciadas por `ncep_b` e `cptec_b`, pode-se seguir os exemplos a seguir.
 
-Observe que os coeficientes de projeção da temperatura `agvin`, para as instâncias `ncep_b` e `cptec_b`, possuem uma dimensão extra denominada `sigma_2`. Esta dimensão extra precisa ser fixada para um dos níveis contidos nas instâncias. Utilize o comando `ncep_b.levs` e `cptec_b.levs` para obter os valores possíveis para isto (fazendo-se `isel(sigma_2=0)` escolhe-se o primeiro nível, próximo à superfície e `isel(sigma_2=-1)` escolhe-se o último nível, próximo ao topo do modelo).
+Observe que os coeficientes de projeção da temperatura `agvin`, para as instâncias `ncep_b` e `cptec_b`, possuem uma dimensão extra denominada `level_2`. Esta dimensão extra precisa ser fixada para um dos níveis contidos nas instâncias. Utilize o comando `ncep_b.levs` e `cptec_b.levs` para obter os valores possíveis para isto (fazendo-se `isel(level_2=0)` escolhe-se o primeiro nível, próximo à superfície e `isel(level_2=-1)` escolhe-se o último nível, próximo ao topo do modelo).
 
 === "Comando"
 
     ```python linenums="1"
     fig, ax = plt.subplots(1, 2, constrained_layout=True, figsize=(10,4))
     
-    ncep_b.balprojs['agvin'].isel(sigma_2=0).plot.contourf(ax=ax[0])#, vmin=0, vmax=5e-7)
-    cptec_b.balprojs['agvin'].isel(sigma_2=0).plot.contourf(ax=ax[1])#, vmin=0, vmax=5e-7)
+    ncep_b.balprojs['agvin'].isel(level_2=0).plot.contourf(ax=ax[0])#, vmin=0, vmax=5e-7)
+    cptec_b.balprojs['agvin'].isel(level_2=0).plot.contourf(ax=ax[1])#, vmin=0, vmax=5e-7)
     
     ax[0].set_title('NCEP (64 levels)')
     ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Projection of the Stream Function ($\psi$) at the level 0 over the balanced part of Temperature (agvin, sigma_2=0)')
+    plt.suptitle('Projection of the Stream Function ($\psi$) at the level 0 over the balanced part of Temperature (agvin, level_2=0)')
     plt.show()
     ```
 
@@ -517,13 +517,13 @@ E para o último nível em ambas as matrizes:
     ```python linenums="1"
     fig, ax = plt.subplots(1, 2, constrained_layout=True, figsize=(10,4))
     
-    ncep_b.balprojs['agvin'].isel(sigma_2=-1).plot.contourf(ax=ax[0])#, vmin=0, vmax=5e-7)
-    cptec_b.balprojs['agvin'].isel(sigma_2=-1).plot.contourf(ax=ax[1])#, vmin=0, vmax=5e-7)
+    ncep_b.balprojs['agvin'].isel(level_2=-1).plot.contourf(ax=ax[0])#, vmin=0, vmax=5e-7)
+    cptec_b.balprojs['agvin'].isel(level_2=-1).plot.contourf(ax=ax[1])#, vmin=0, vmax=5e-7)
     
     ax[0].set_title('NCEP (64 levels)')
     ax[1].set_title('CPTEC (28 levels)')
     
-    plt.suptitle('Projection of the Stream Function ($\psi$) at the level -1 over the balanced part of Temperature (agvin, sigma_2=-1)')
+    plt.suptitle('Projection of the Stream Function ($\psi$) at the level -1 over the balanced part of Temperature (agvin, level_2=-1)')
     plt.show()
     ```
 
@@ -607,8 +607,8 @@ No exemplo a seguir, são comparados os perfis verticais com as amplitudes de `s
     ```python linenums="1"
     fig, ax = plt.subplots(1, 2, constrained_layout=True, figsize=(8,5))
     
-    ncep_b.amplitudes['sf'].mean(dim='latitude').plot(ax=ax[0], y='sigma')
-    cptec_b.amplitudes['sf'].mean(dim='latitude').plot(ax=ax[1], y='sigma')
+    ncep_b.amplitudes['sf'].mean(dim='latitude').plot(ax=ax[0], y='level')
+    cptec_b.amplitudes['sf'].mean(dim='latitude').plot(ax=ax[1], y='level')
     
     ax[0].set_title('NCEP (64 levels)')
     ax[1].set_title('CPTEC (28 levels)')
@@ -650,8 +650,8 @@ Para o perfil da velocidade potencial (vp):
     ```python linenums="1"
     fig, ax = plt.subplots(1, 2, constrained_layout=True, figsize=(8,5))
     
-    ncep_b.amplitudes['vp'].mean(dim='latitude').plot(ax=ax[0], y='sigma')
-    cptec_b.amplitudes['vp'].mean(dim='latitude').plot(ax=ax[1], y='sigma')
+    ncep_b.amplitudes['vp'].mean(dim='latitude').plot(ax=ax[0], y='level')
+    cptec_b.amplitudes['vp'].mean(dim='latitude').plot(ax=ax[1], y='level')
     
     ax[0].set_title('NCEP (64 levels)')
     ax[1].set_title('CPTEC (28 levels)')
@@ -692,8 +692,8 @@ Para o perfil da temperatura (t):
     ```python linenums="1"
     fig, ax = plt.subplots(1, 2, constrained_layout=True, figsize=(8,5))
     
-    ncep_b.amplitudes['t'].mean(dim='latitude').plot(ax=ax[0], y='sigma')
-    cptec_b.amplitudes['t'].mean(dim='latitude').plot(ax=ax[1], y='sigma')
+    ncep_b.amplitudes['t'].mean(dim='latitude').plot(ax=ax[0], y='level')
+    cptec_b.amplitudes['t'].mean(dim='latitude').plot(ax=ax[1], y='level')
     
     ax[0].set_title('NCEP (64 levels)')
     ax[1].set_title('CPTEC (28 levels)')
@@ -734,8 +734,8 @@ Para o perfil da umidade relativa (q):
     ```python linenums="1"
     fig, ax = plt.subplots(1, 2, constrained_layout=True, figsize=(8,5))
     
-    ncep_b.amplitudes['q'].mean(dim='latitude').plot(ax=ax[0], y='sigma')
-    cptec_b.amplitudes['q'].mean(dim='latitude').plot(ax=ax[1], y='sigma')
+    ncep_b.amplitudes['q'].mean(dim='latitude').plot(ax=ax[0], y='level')
+    cptec_b.amplitudes['q'].mean(dim='latitude').plot(ax=ax[1], y='level')
     
     ax[0].set_title('NCEP (64 levels)')
     ax[1].set_title('CPTEC (28 levels)')
@@ -777,8 +777,8 @@ Para o perfil do ozônio (oz):
     ```python linenums="1"
     fig, ax = plt.subplots(1, 2, constrained_layout=True, figsize=(8,5))
     
-    ncep_b.amplitudes['oz'].mean(dim='latitude').plot(ax=ax[0], y='sigma')
-    cptec_b.amplitudes['oz'].mean(dim='latitude').plot(ax=ax[1], y='sigma')
+    ncep_b.amplitudes['oz'].mean(dim='latitude').plot(ax=ax[0], y='level')
+    cptec_b.amplitudes['oz'].mean(dim='latitude').plot(ax=ax[1], y='level')
     
     ax[0].set_title('NCEP (64 levels)')
     ax[1].set_title('CPTEC (28 levels)')
@@ -819,8 +819,8 @@ Para o perfil do conteúdo de água líquida (cw):
     ```python linenums="1"
     fig, ax = plt.subplots(1, 2, constrained_layout=True, figsize=(8,5))
     
-    ncep_b.amplitudes['cw'].mean(dim='latitude').plot(ax=ax[0], y='sigma')
-    cptec_b.amplitudes['cw'].mean(dim='latitude').plot(ax=ax[1], y='sigma')
+    ncep_b.amplitudes['cw'].mean(dim='latitude').plot(ax=ax[0], y='level')
+    cptec_b.amplitudes['cw'].mean(dim='latitude').plot(ax=ax[1], y='level')
     
     ax[0].set_title('NCEP (64 levels)')
     ax[1].set_title('CPTEC (28 levels)')

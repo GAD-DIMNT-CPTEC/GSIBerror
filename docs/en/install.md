@@ -44,7 +44,7 @@ After that, activate the new environment by issuing:
 conda activate GSIBerror
 ```
 
-!!! note "Note"
+!!! tip "Tip"
 
     If you want to contribute to the `GSIBerror` development, it is recommended to install the code using the repository method.
 

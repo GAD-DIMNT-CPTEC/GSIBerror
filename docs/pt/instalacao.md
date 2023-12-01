@@ -45,7 +45,7 @@ Após a criação do ambiente, basta ativá-lo com o comando:
 conda activate GSIBerror
 ```
 
-!!! note "Nota"
+!!! tip "Dica"
 
     Quando o usuário desejar contrubuir com o desenvolvimento do pacote `GSIBerror`, recomenda-se a utilização do código do repositório.
 

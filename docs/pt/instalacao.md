@@ -1,20 +1,20 @@
 # Instalação
 
-A instalação do pacote `GSIBerror` pode ser feita a partir do [PyPi](https://pypi.org/) ou através do próprio repositório. Nesta página, são apresentados estes métodos de instalação para que o usuário escolha o método que melhor lhe convier.
+A instalação do pacote `GSIBerror` pode ser feita a partir `pip` ou através do próprio repositório. Nesta página, são apresentados estes métodos de instalação para que o usuário escolha o método que melhor lhe convier.
 
 !!! warning "Atenção"
 
     Antes de iniciar a instalação do pacote `GSIBerror`, certifique-se de ter uma distribuição do Python instalada na sua máquina. Para facilitar o processo recomenda-se a instalação do [Miniconda](https://docs.conda.io/projects/miniconda/en/latest/).
 
 
-## PyPi
+## Pip
 
-Para instalar utilizando a distribuição do pacote `GSIBerror` lançada no repositório PyPi, crie primeiro um ambiente virtual com o `venv` e instale o pacote `GSIBerror` utilizando o `pip`:
+Para instalar utilizando a distribuição do pacote `GSIBerror`, crie primeiro um ambiente virtual com o `venv` e instale o pacote `GSIBerror` utilizando o `pip`:
 
 ```bash linenums="1"
 python -m venv GSIBerror
 source GSIBerror/bin/activate
-pip install GSIBerror
+pip install .
 ```
 
 É possível utilizar também o `conda` para a utilização do pacote `GSIBerror`. Da mesma forma como foi demonstrado com o `venv`, crie um ambiente com o `conda` e instale o pacote `GSIBerror` utilizando o `pip`: 
@@ -22,7 +22,7 @@ pip install GSIBerror
 ```bash linenums="1"
 conda create -n GSIBerror python=3.9.18
 conda activate GSIBerror
-pip install GSIBerror
+pip install .
 ```    
 
 !!! note "Nota"
@@ -31,7 +31,7 @@ pip install GSIBerror
 
 ## Repositório
 
-No repositório do projeto, há o arquivo [`environment.yml`](https://github.com/cfbastarz/GSIBerror/blob/main/environment.yml) que pode ser utilizado para criar um ambiente com o pacote `GSIBerror` junto com todas as bibliotecas do Python necessárias para a utilização do pacote.
+No repositório do projeto, há o arquivo `environment.yml` que pode ser utilizado para criar um ambiente com o pacote `GSIBerror` junto com todas as bibliotecas do Python necessárias para a utilização do pacote.
 
 Para criar o ambiente Python para uso do pacote `GSIBerror` utilizando o `conda`, basta fazer:
 

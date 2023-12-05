@@ -6,7 +6,7 @@ Nesta página são apresentados alguns exemplos de uso do pacote `GSIBerror`. No
 
 !!! info "Informação"
 
-    Uma versão desta página para o Jupyter Notebook pode ser encontrada em [https://github.com/cfbastarz/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-pt.ipynb](https://github.com/cfbastarz/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-pt.ipynb). 
+    Uma versão desta página para o Jupyter Notebook pode ser encontrada em [https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-pt.ipynb](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-pt.ipynb). 
 
     Se preferir interagir com o notebook, clique no botão abaixo para utilizar o Google Colab.
 
@@ -39,7 +39,7 @@ Os módulos a seguir são opcionais e podem ser carregados caso o usuário queir
 
 !!! info "Observação"
 
-    No repositório, está disponível o script [`plot_functions.py`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/plot_functions.py) onde estão implementadas algumas funções de plotagem auxiliares para a utilização do pacote `GSIBerror`. As função contidas no script também estão disponíveis quando o pacote `GSIBerror` é instalado por meio do `pip` ou `conda`. Veja um exemplo da sua utilização no notebook [`read_gsi_berror_python-class-final-BCPTEC_hyb_coord-compara-exemplos-pt.ipynb`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-BCPTEC_hyb_coord-compara-exemplos-pt.ipynb). Nesse notebook, diferente do que é apresentado neste manual de uso, são utilizadas duas matrizes com a mesma quantidade de níveis verticais.
+    No repositório, está disponível o script [`plot_functions.py`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/plot_functions.py) onde estão implementadas algumas funções de plotagem auxiliares para a utilização com a classe `Berror`. Veja um exemplo da sua utilização no notebook [`read_gsi_berror_python-class-final-BCPTEC_hyb_coord.ipynb`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-BCPTEC_hyb_coord.ipynb). Nesse notebook, diferente do que é apresentada nesta página, são utilizadas duas matrizes com a mesma quantidade de níveis verticais.
 
 
 ## Definição dos arquivos de covariâncias
@@ -63,7 +63,7 @@ A seguir, define-se o nome do arquivo a ser lido. No exemplo dado neste notebook
 
     A variável `path` deverá ser ajustada pelo usuário para refletir o caminho onde se encontram os arquivos das matrizes `gsir4.berror_stats.gcv.BAM.TQ0062L028` e `global_berror.l64y386.f77-ncep-dtc.gcv`.
 
-## Utilização da classe `GSIBerror`
+## Utilização da classe `Berror`
 
 Para utilizar a classe, é necessário criar uma instância para cada uma das matrizes a serem lidas:
 
@@ -622,7 +622,7 @@ No exemplo a seguir, são comparados os perfis verticais com as amplitudes de `s
     ![png](../imgs/output_37_0.png)
     
 
-Para a velocidade potencial (vp):
+Para a velocidade potencial (`vp`):
 
 === "Comando"
 
@@ -643,7 +643,7 @@ Para a velocidade potencial (vp):
 
     ![png](../imgs/output_38_0.png)
     
-Para o perfil da velocidade potencial (vp):
+Para o perfil da velocidade potencial (`vp`):
 
 === "Comando"
 
@@ -664,7 +664,7 @@ Para o perfil da velocidade potencial (vp):
     
     ![png](../imgs/output_39_0.png)
     
-Para a temperatura (t):
+Para a temperatura (`t`):
 
 === "Comando"
 
@@ -685,7 +685,7 @@ Para a temperatura (t):
   
     ![png](../imgs/output_40_0.png)
      
-Para o perfil da temperatura (t):
+Para o perfil da temperatura (`t`):
 
 === "Comando"
 
@@ -706,7 +706,7 @@ Para o perfil da temperatura (t):
     
     ![png](../imgs/output_41_0.png)
 
-Para a umidade relativa (q):
+Para a umidade relativa (`q`):
     
 === "Comando"
 
@@ -727,7 +727,7 @@ Para a umidade relativa (q):
         
     ![png](../imgs/output_42_0.png)
     
-Para o perfil da umidade relativa (q):
+Para o perfil da umidade relativa (`q`):
 
 === "Comando"
 
@@ -749,7 +749,7 @@ Para o perfil da umidade relativa (q):
     ![png](../imgs/output_43_0.png)
 
 
-Para o ozônio (oz):
+Para o ozônio (`oz`):
 
 === "Comando"
 
@@ -770,7 +770,7 @@ Para o ozônio (oz):
     
     ![png](../imgs/output_46_0.png)
 
-Para o perfil do ozônio (oz):
+Para o perfil do ozônio (`oz`):
     
 === "Comando"
 
@@ -791,7 +791,7 @@ Para o perfil do ozônio (oz):
     
     ![png](../imgs/output_47_0.png)
 
-Para o conteúdo de água líquida (cw):
+Para o conteúdo de água líquida (`cw`):
     
 === "Comando"
 
@@ -812,7 +812,7 @@ Para o conteúdo de água líquida (cw):
     
     ![png](../imgs/output_48_0.png)
 
-Para o perfil do conteúdo de água líquida (cw):
+Para o perfil do conteúdo de água líquida (`cw`):
 
 === "Comando"
 
@@ -833,7 +833,7 @@ Para o perfil do conteúdo de água líquida (cw):
     
     ![png](../imgs/output_49_0.png)
 
-Para pressão (ps):
+Para pressão (`ps`):
 
 === "Comando"
 
@@ -906,7 +906,7 @@ Assim como as amplitudes, os comprimentos de escala horizontais das instâncias 
     
     ![png](../imgs/output_54_0.png)
 
-Para a velocidade potencial (vp):
+Para a velocidade potencial (`vp`):
 
 === "Comando"
 
@@ -927,7 +927,7 @@ Para a velocidade potencial (vp):
     
     ![png](../imgs/output_55_0.png)
     
-Para a temperatura (t):
+Para a temperatura (`t`):
 
 === "Comando"
 
@@ -948,7 +948,7 @@ Para a temperatura (t):
     
     ![png](../imgs/output_56_0.png)
     
-Para a umidade (q):
+Para a umidade (`q`):
 
 === "Comando"
 
@@ -969,7 +969,7 @@ Para a umidade (q):
     
     ![png](../imgs/output_57_0.png)
 
-Para o ozônio (oz):
+Para o ozônio (`oz`):
 
 === "Comando"
 
@@ -990,7 +990,7 @@ Para o ozônio (oz):
     
     ![png](../imgs/output_58_0.png)
     
-Para a pressão (ps):
+Para a pressão (`ps`):
 
 === "Comando"
 
@@ -1011,7 +1011,7 @@ Para a pressão (ps):
     
     ![png](../imgs/output_59_0.png)
     
-Para a temperatura da superfície do mar (tsm):
+Para a temperatura da superfície do mar (`sst`):
 
 === "Comando"
 
@@ -1064,7 +1064,7 @@ Assim como as amplitudes e os comprimentos de escala horizontais, os comprimento
     
     ![png](../imgs/output_62_0.png)
 
-Para a velocidade potencial (vp):
+Para a velocidade potencial (`vp`):
     
 === "Comando"
 
@@ -1085,7 +1085,7 @@ Para a velocidade potencial (vp):
     
     ![png](../imgs/output_63_0.png)
     
-Para a temperatura (t):
+Para a temperatura (`t`):
 
 === "Comando"
 
@@ -1106,7 +1106,7 @@ Para a temperatura (t):
     
     ![png](../imgs/output_64_0.png)
     
-Para a umidade relativa (q):
+Para a umidade relativa (`q`):
 
 === "Comando"
 
@@ -1127,7 +1127,7 @@ Para a umidade relativa (q):
     
     ![png](../imgs/output_65_0.png)
     
-Para o ozônio (oz):
+Para o ozônio (`oz`):
 
 === "Comando"
 
@@ -1148,7 +1148,7 @@ Para o ozônio (oz):
     
     ![png](../imgs/output_66_0.png)
     
-Para o conteúdo de água líquida (cw):
+Para o conteúdo de água líquida (`cw`):
 
 === "Comando"
 

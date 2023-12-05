@@ -1,14 +1,14 @@
 # Usage
 
-In this page are presented some use examples of the `GSIBerror` class. In these examples, there are considered two differente background error covariances matrices, one provided by the Developmental Testbed Center ([DTC](https://dtcenter.org/)) and another calculated by using pairs of 48 and 24 hours forecasts from the Braziliand Atmospheric Model (BAM) from the Center for Weather Forecasts and Climate Studies (CPTEC)[^1], using the NMC method.
+This page presents some usage examples of the `Berror` class from the `GSIBerror` package. These examples consider two different background error covariances matrices - one provided by the Developmental Testbed Center ([DTC](https://dtcenter.org/)) and another calculated by using pairs of 48 and 24-hours forecasts from the Braziliand Atmospheric Model (BAM) from the Center for Weather Forecasts and Climate Studies (CPTEC)[^1], using the NMC method.
 
 [^1]: Matriz de Covariâncias dos Erros de Previsão Aplicada ao Sistema de Assimilação de Dados Global do CPTEC: Experimentos com Observação Única. Disponível em: [https://www.scielo.br/j/rbmet/a/8LQNdCV9jJM9whJdpkDLfCh/abstract/?lang=pt&format=html](https://www.scielo.br/j/rbmet/a/8LQNdCV9jJM9whJdpkDLfCh/abstract/?lang=pt&format=html).
 
 !!! info "Info"
 
-    A version of this page for the Juptyter Notebook can be fount at [https://github.com/cfbastarz/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-en.ipynb](https://github.com/cfbastarz/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-en.ipynb).
+    A version of this page for the Juptyter Notebook can be found at [https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-en.ipynb](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-en.ipynb).
 
-    If you want to interact with the notebook, click on buttom below to open Google Colab.
+    If you want to interact with the notebook, click on the button below to open Google Colab.
 
     <a target="_blank" href="https://colab.research.google.com/github/GAD-DIMNT-CPTEC/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-en.ipynb">
       <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
@@ -24,7 +24,7 @@ To use the class, load it with the following command:
     import gsiberror as gb
     ```
 
-The following python modules are optional and can be loaded in case the user wants to plot the matrix records. The module `cartopy` is loaded to plot the coastlines for the records related to the `sst`(sea surface temperature) only, since the remainder of the records are latitude dependent.
+The following python modules are optional and can be loaded in case the user wants to plot the matrix records. The module `cartopy` is loaded to plot the coastlines for the records related to `sst` (sea surface temperature) only, since the remainder of the records are latitude-dependent.
 
 === "Command"
 
@@ -39,11 +39,11 @@ The following python modules are optional and can be loaded in case the user wan
 
 !!! info "Info"
 
-    In the repository, there is a script called [`plot_functions.py`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/plot_functions.py) where are implemented some auxiliary ploting functions to use along with the `GSIBerror` class. See an example of it usage in the notebook [`read_gsi_berror_python-class-final-BCPTEC_hyb_coord-compara-exemplos.ipynb`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/read_gsi_berror_python-class-final-BCPTEC_hyb_coord-compara-exemplos.ipynb). In the notebook, apart from what is being detailed in this page, there are used two matrices with the same number of vertical levels.
+    In the repository, there is a script called [`plot_functions.py`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/plot_functions.py) where some auxiliary ploting functions are implemented to use along with the `Berror` class. See an example of its usage in the notebook [`read_gsi_berror_python-class-final-BCPTEC_hyb_coord.ipynb`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-BCPTEC_hyb_coord.ipynb). In the notebook, apart from what is being detailed on this page, two matrices with the same number of vertical levels are used.
 
 ## Defining the covariance files
 
-In the following section, it is defined the file to be read. In this example, two matrices are handled at the same time, `fncep` (the DTC matrix) and `fcptec` (the CPTEC matrix). Both matrices have different, which will be further inspected:
+In the following section, the file to be read is defined. In this example, two matrices are handled at the same time, `fncep` (the DTC matrix) and `fcptec` (the CPTEC matrix). Both matrices have different characteristics, which will be further inspected:
 
 === "Command"
 
@@ -61,7 +61,7 @@ In the following section, it is defined the file to be read. In this example, tw
 
     The `path` variable must the set up by the user to reflect the correct path to where the matrices files `gsir4.berror_stats.gcv.BAM.TQ0062L028` and `global_berror.l64y386.f77-ncep-dtc.gcv` are.
 
-## Using the `GSIBerror` class
+## Using the `Berror` class
 
 To use the class, it is necessary to create instances for each of the matrices to be read:
 
@@ -75,7 +75,7 @@ To use the class, it is necessary to create instances for each of the matrices t
 
 ## The `read_records` method
 
-The `read_records` method is used to read all of the records (ie., horizontal regression coefficients, vertical and horizontal lenght scales and standard deviations) from the matrices and their attributes (ie., number of latitude, longitude and vertical levels). The documentation of this method can be accessed by using the following command:
+The `read_records` method is used to read all the records (ie., horizontal regression coefficients, vertical and horizontal lenght scales and standard deviations) from the matrices and their attributes (ie., number of latitude, longitude and vertical levels). The documentation of this method can be accessed by using the following command:
 
 === "Command"
 
@@ -152,7 +152,7 @@ To read the records and attributes from the matrices through the instances `ncep
 
 ## Checking the matrix attributes
 
-The background error covariance used by GSI has some records that can be checked by through the `GSIBerror` class.
+The background error covariance used by GSI has some records that can be checked by through the `Berror` class.
 
 ### Matrix dimension
 
@@ -190,7 +190,7 @@ Doing the same for the `cptec_b` instance:
 
 ### Horizontal regression coefficients
 
-To check the matrices attributes, just use the class instance for the desired matrix with one of the following attribute names:
+To check the matrices attributes, use the class instance for the desired matrix with one of the following attribute names:
 
 * `balprojs`: horizontal regression coefficients;
 * `amplitudes`: standard deviations of the GSI control variables;
@@ -288,7 +288,7 @@ To check the matrices attributes, just use the class instance for the desired ma
        * level     (level) int64 1 2 3 4 5 6 7 8 9 10 ... 56 57 58 59 60 61 62 63 64}
     ```
 
-Note that the `balprojs` records are stored in a dictionary with three keys `agvin`, `bgvin` and `wgvin`. These are the horizontal regression coefficients used by GSI to construct the balanced part of the temperature, potential velocity and surface pressure, respectively:
+Note that the `balprojs` records are stored in a dictionary with three keys: `agvin`, `bgvin` and `wgvin`. These are the horizontal regression coefficients used by GSI to construct the balanced part of the temperature, potential velocity and surface pressure, respectively:
 
 * `agvin`: horizontal regression coefficients for the temperature;
 * `bgvin`: horizontal regression coefficients for the velocity potential;
@@ -418,7 +418,7 @@ For the `wgvin`:
       * level     (level) int64 1 2 3 4 5 6 7 8 9 10 ... 56 57 58 59 60 61 62 63 64
     ```
 
-To retrieve the min and max values, eg., from the horizontal regression coefficients of the velocity potential (`bgvin`), use either the `min()` or `max()` methods from the `xarray` module:
+To retrieve the min and max values, e.g., from the horizontal regression coefficients of the velocity potential (`bgvin`), use either the `min()` or `max()` methods from the `xarray` module:
 
 === "Command"
 
@@ -488,7 +488,7 @@ For the `cptec_b` instance:
     
 To compare the horizontal regression coefficients for the instantiated matrices `ncep_b` and `cptec_b`, see the next examples.
 
-Note that the horizontal regression coefficients for the temperature `agvin` have an extra dimension named `level_2`. This extra dimension needs to be set for one of the levels contained in the instances. Use attribute `levs` to retrieve the possible values for each instance. By doing `isel(level_2=0)` it is chosen the first level, next to the surface and `isel(level_2=-1)` it is chosen the last level, next to the model top.
+Note that the horizontal regression coefficients for the temperature `agvin` have an extra dimension named `level_2`. This extra dimension needs to be set for one of the levels contained in the instances. Use the attribute `levs` to retrieve the possible values for each instance. By using `isel(level_2=0)`, the first level, next to the surface, is chosen, and by using `isel(level_2=-1)`, the last level, next to the model top, is chosen.
 
 === "Command"
 
@@ -578,7 +578,7 @@ To check and compare the amplitudes from the instances `ncep_b` and `cptec_b`, s
 
 !!! warning "Warning"
 
-    The records of ozone, cloud water and sea surface temperature (amplitudes and horizontal/vertical length scales) are intentionally the same for both matrices displayed in this notebook. In fact, the CPTEC **B** matrix borrows these records from the NCEP **B** matrix (provides by the Developmental Testbed Center_ - DTC) for testing purposes.
+    The records of ozone, cloud water and sea surface temperature (amplitudes and horizontal/vertical length scales) are intentionally the same for both matrices displayed in this notebook. In fact, the CPTEC **B** matrix borrows these records from the NCEP **B** matrix (provides by the Developmental Testbed Center - DTC) for testing purposes.
 
 === "Command"
 
@@ -599,7 +599,7 @@ To check and compare the amplitudes from the instances `ncep_b` and `cptec_b`, s
     
     ![png](../imgs/output_35_0.png)
     
-In the following example, the vertical profiles from the amplitudes of the streamfunction `sf` from the instances `ncep_b` and `cptec_b` are compared:
+In the following example, vertical profiles from the amplitudes of the streamfunction `sf` from the instances `ncep_b` and `cptec_b` are compared:
 
 === "Command"
 

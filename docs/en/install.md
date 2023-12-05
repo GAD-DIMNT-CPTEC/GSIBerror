@@ -1,14 +1,14 @@
 # Installation
 
-The installation of the `GSIBerror` package can be made trough pip or the git repository. In this page, there are presented the methods so the user can choose what best fit their needs.
+The installation of the `GSIBerror` package can be made through pip or the git repository. In this page, there are presented the methods so the user can choose what best fit their needs.
 
 !!! warning "Warning"
 
-    Before you begin, make sure you have a Python distribution installed in your computer. To make it easier, it is recommended the installation of [Miniconda](https://docs.conda.io/projects/miniconda/en/latest/).
+    Before you begin, make sure you have a Python distribution installed in your computer. To make it easier, it is recommended to install of [Miniconda](https://docs.conda.io/projects/miniconda/en/latest/).
 
 ## Pip
 
-To install the `GSIBerror` package, first create a Python virtual environment using `venv` and install the `GSIBerror` package using `pip`:
+To install `GSIBerror`, first create a Python virtual environment using `venv` and install the `GSIBerror` package using `pip`:
 
 ```bash linenums="1"
 python -m venv GSIBerror
@@ -30,9 +30,9 @@ pip install .
 
 ## Repository
 
-In the project repository, there is a file called `environment.yml` that can be used to create an Anaconda Python environment with all te libraries and packages needed for the use of the `GSIBerror` package.
+In the project repository, there is a file called `environment.yml` that can be used to create an Anaconda Python environment with all the libraries and packages needed for the use of the `GSIBerror` package.
 
-To create an Python environment for the use of the `GSIBerror` package, download the last release and issue the following command:
+To create an Python environment for the `GSIBerror` package, download the latest release and execute the following command:
 
 ```bash linenums="1"
 conda env create -f environment.yml

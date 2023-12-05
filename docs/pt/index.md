@@ -1,6 +1,8 @@
 # GSIBerror 
 
-Nesta página, é feita uma demonstração da classe `Berror` para a leitura dos records e atributos de matrizes de covariâncias compatíveis com o [GSI](https://dtcenter.org/community-code/gridpoint-statistical-interpolation-gsi) - _Gridpoint Statistical Interpolation_ (formato `.gcv`). Não foram testadas matrizes regionais, mas deve ser possível utilizar esta classe para inspecioná-las também.
+O pacote `GSIBerror` foi concebido para a leitura dos records e atributos de matrizes de covariâncias compatíveis com o [_Gridpoint Statistical Interpolation_](https://dtcenter.org/community-code/gridpoint-statistical-interpolation-gsi) (formato `.gcv`, grade global).
+
+Veja o video abaixo para ter uma visão geral do uso do pacote. Você pode também utilizar a plataforma do Google Colab para explorar os notebooks do Jupyter no repositório.
 
 ![type:video](https://youtube.com/embed/eD3OxtXJU90)
 

@@ -4,7 +4,7 @@ O pacote `GSIBerror` foi concebido para a leitura dos records e atributos de mat
 
 Veja o video abaixo para ter uma visão geral do uso do pacote. Você pode também utilizar a plataforma do Google Colab para explorar os notebooks do Jupyter no repositório.
 
-![type:video](https://youtube.com/embed/eD3OxtXJU90)
+![type:video](https://youtube.com/embed/utEsGoTVE4o)
 
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode" target="_blank"><img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" alt="CC-BY-NC-SA" width="100"/></a>
 

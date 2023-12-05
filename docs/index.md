@@ -4,7 +4,7 @@
 
 See the screencast below to get an overview of the package usage. You can also use the Google Colab platform to explore the Jupyter notebooks in the repository. 
 
-![type:video](https://youtube.com/embed/eD3OxtXJU90)
+![type:video](https://youtube.com/embed/utEsGoTVE4o)
 
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode" target="_blank"><img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" alt="CC-BY-NC-SA" width="100"/></a>
 

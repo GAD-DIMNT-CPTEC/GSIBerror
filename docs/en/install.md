@@ -8,12 +8,12 @@ The installation of the `GSIBerror` package can be made through pip or the git r
 
 ## Pip
 
-To install `GSIBerror`, first create a Python virtual environment using `venv` and install the `GSIBerror` package using `pip`:
+To install `GSIBerror` package, first create a Python virtual environment using `venv` and install the package using `pip`:
 
 ```bash linenums="1"
 python -m venv GSIBerror
 source GSIBerror/bin/activate
-pip install .
+pip install GSIBerror
 ```
 
 It is also possible to use `conda` to install the `GSIBerror` package. In the same way demonstrated by using the `venv`, use `conda` to create the virtual environment and install the `GSIBerror` package using `pip`:
@@ -21,7 +21,7 @@ It is also possible to use `conda` to install the `GSIBerror` package. In the sa
 ```bash linenums="1"
 conda create -n GSIBerror python=3.9.18
 conda activate GSIBerror
-pip install .
+pip install GSIBerror
 ```    
 
 !!! note "Note"
@@ -30,11 +30,13 @@ pip install .
 
 ## Repository
 
-In the project repository, there is a file called `environment.yml` that can be used to create an Anaconda Python environment with all the libraries and packages needed for the use of the `GSIBerror` package.
+In the project repository, there is a file called `environment.yml` that can be used to create an Anaconda Python environment with all the libraries and packages needed for its use.
 
-To create an Python environment for the `GSIBerror` package, download the latest release and execute the following command:
+To create a Python environment for the `GSIBerror` package using `conda` and the `environment.yml` file, download the latest release and execute the commands:
 
 ```bash linenums="1"
+gh repo clone GAD-DIMNT-CPTEC/GSIBerror
+cd GSIBerror
 conda env create -f environment.yml
 ```
 
@@ -48,4 +50,4 @@ conda activate GSIBerror
 
     If you want to contribute to the `GSIBerror` development, it is recommended to install the code using the repository method.
 
-With the installation of the `GSIBerror` package done, explore the available notebooks with a demonstration of the package.
+With the installation of the `GSIBerror` package done, explore the available notebooks in the repository with a demonstration of the package.

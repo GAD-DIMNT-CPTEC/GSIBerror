@@ -33,22 +33,20 @@ The following python modules are optional and can be loaded in case the user wan
     import matplotlib.pyplot as plt
     import cartopy.crs as ccrs
     import cartopy.feature as cfeature
-    
-    %matplotlib inline
     ```
 
 !!! info "Info"
 
-    In the repository, there is a script called [`plot_functions.py`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/plot_functions.py) where some auxiliary ploting functions are implemented to use along with the `Berror` class. See an example of its usage in the notebook [`read_gsi_berror_python-class-final-BCPTEC_hyb_coord.ipynb`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-BCPTEC_hyb_coord.ipynb). In the notebook, apart from what is being detailed on this page, two matrices with the same number of vertical levels are used.
+    In the repository, there is a script called [`plot_functions.py`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/plot_functions.py) where some auxiliary ploting functions are implemented to use along with the `Berror` class. See an example of its usage in the notebook [`read_gsi_berror_python-class-final-BCPTEC_hyb_coord.ipynb`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-BCPTEC_hyb_coord.ipynb). 
 
 ## Defining the covariance files
 
-In the following section, the file to be read is defined. In this example, two matrices are handled at the same time, `fncep` (the DTC matrix) and `fcptec` (the CPTEC matrix). Both matrices have different characteristics, which will be further inspected:
+In the following section, the file to be read is defined. In this example, two matrices are handled at the same time, `fncep` (the DTC matrix) and `fcptec` (the CPTEC matrix). Both matrices have different dimensions, which will be further inspected:
 
 === "Command"
 
     ```python linenums="1"
-    path = '/dados/das/pesq1/BAM.berror/xc50/old/'
+    path = '/dados/das/pesq1/BAM.berror/xc50/'
     
     bcptec = 'gsir4.berror_stats.gcv.BAM.TQ0062L028'
     bncep = 'global_berror.l64y386.f77-ncep-dtc.gcv'
@@ -60,6 +58,10 @@ In the following section, the file to be read is defined. In this example, two m
 !!! warning "Warning"
 
     The `path` variable must the set up by the user to reflect the correct path to where the matrices files `gsir4.berror_stats.gcv.BAM.TQ0062L028` and `global_berror.l64y386.f77-ncep-dtc.gcv` are.
+
+!!! tip "Tip"
+
+    In the [`data`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/tree/main/data) directory on the the repository, check the matrices files `bcptec_bam_352pairs_gsir4.berror_stats.fix.oz.cw.tsm.gcv`, `global_berror.l64y386.f77-ncep-dtc.gcv` and `new_gsir4.berror_stats-tese-cfbastarz2017.gcv`, which can be used to test the `GSIBerror` package.
 
 ## Using the `Berror` class
 

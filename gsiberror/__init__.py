@@ -56,9 +56,9 @@ class Berror(object):
                     
         Use
         ---
-            from GSIBerror import Berror
+            import gsiberror as gb
         
-            bfile = Berror('arquivo_matriz_B.gcv')
+            bfile = gb.Berror('arquivo_matriz_B.gcv')
         
             bfile.read_records()
             

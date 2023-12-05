@@ -33,24 +33,22 @@ Os módulos a seguir são opcionais e podem ser carregados caso o usuário queir
     import matplotlib.pyplot as plt
     import cartopy.crs as ccrs
     import cartopy.feature as cfeature
-    
-    %matplotlib inline
     ```
 
 !!! info "Observação"
 
-    No repositório, está disponível o script [`plot_functions.py`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/plot_functions.py) onde estão implementadas algumas funções de plotagem auxiliares para a utilização com a classe `Berror`. Veja um exemplo da sua utilização no notebook [`read_gsi_berror_python-class-final-BCPTEC_hyb_coord.ipynb`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-BCPTEC_hyb_coord.ipynb). Nesse notebook, diferente do que é apresentada nesta página, são utilizadas duas matrizes com a mesma quantidade de níveis verticais.
+    No repositório, há o script [`plot_functions.py`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/plot_functions.py) onde estão implementadas algumas funções de plotagem auxiliares para a utilização com a classe `Berror`. Veja um exemplo da sua utilização no notebook [`read_gsi_berror_python-class-final-BCPTEC_hyb_coord.ipynb`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-BCPTEC_hyb_coord.ipynb). 
 
 
 ## Definição dos arquivos de covariâncias
 
-A seguir, define-se o nome do arquivo a ser lido. No exemplo dado neste notebook, são abertas duas matrizes, `fncep` (matriz do NCEP) e `fcptec` (matriz do modelo BAM). Ambas as matrizes possuem dimensões distintas:
+A seguir, define-se o nome do arquivo a ser lido. No exemplo dado, são consideradas duas matrizes, `fncep` (matriz do NCEP) e `fcptec` (matriz do modelo BAM) e ambas as matrizes possuem dimensões distintas:
 
 
 === "Comando"
 
     ```python linenums="1"
-    path = '/dados/das/pesq1/BAM.berror/xc50/old/'
+    path = '/dados/das/pesq1/BAM.berror/xc50/'
     
     bcptec = 'gsir4.berror_stats.gcv.BAM.TQ0062L028'
     bncep = 'global_berror.l64y386.f77-ncep-dtc.gcv'
@@ -62,6 +60,10 @@ A seguir, define-se o nome do arquivo a ser lido. No exemplo dado neste notebook
 !!! warning "Aviso"
 
     A variável `path` deverá ser ajustada pelo usuário para refletir o caminho onde se encontram os arquivos das matrizes `gsir4.berror_stats.gcv.BAM.TQ0062L028` e `global_berror.l64y386.f77-ncep-dtc.gcv`.
+
+!!! tip "Dica"
+
+    No diretório [`data`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/tree/main/data) do repositório, verifique as matrizes `bcptec_bam_352pairs_gsir4.berror_stats.fix.oz.cw.tsm.gcv`, `global_berror.l64y386.f77-ncep-dtc.gcv` e `new_gsir4.berror_stats-tese-cfbastarz2017.gcv`, as quais podem ser utilizadas para testar o pacote `GSIBerror`.
 
 ## Utilização da classe `Berror`
 

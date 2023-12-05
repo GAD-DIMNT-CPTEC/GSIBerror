@@ -37,7 +37,7 @@ The following python modules are optional and can be loaded in case the user wan
 
 !!! info "Info"
 
-    In the repository, there is a script called [`plot_functions.py`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/plot_functions.py) where some auxiliary ploting functions are implemented to use along with the `Berror` class. See an example of its usage in the notebook [`read_gsi_berror_python-class-final-BCPTEC_hyb_coord.ipynb`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-BCPTEC_hyb_coord.ipynb). 
+    In the repository, there is a script called [`plot_functions.py`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/gsiberror/plot_functions.py) where some auxiliary ploting functions are implemented to use along with the `Berror` class. See an example of its usage in the notebook [`read_gsi_berror_python-class-final-BCPTEC_hyb_coord.ipynb`](https://github.com/GAD-DIMNT-CPTEC/GSIBerror/blob/main/notebooks/read_gsi_berror_python-class-final-BCPTEC_hyb_coord.ipynb). 
 
 ## Defining the covariance files
 

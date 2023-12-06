@@ -148,7 +148,7 @@ def plot_reg_coeffs(lmatrix, rec, lev, **kwargs):
         else:
             fig.savefig('reg_coeffs_' + str(rec) + '.png', dpi=fig.dpi, bbox_inches='tight') 
 
-# This function plot the amplitudes
+# This function plots the amplitudes
 def plot_amplitudes(lmatrix, rec, **kwargs): 
     
     if 'eqrange' in kwargs:
@@ -229,7 +229,7 @@ def plot_amplitudes(lmatrix, rec, **kwargs):
                 ax.coastlines() 
             elif rec == 'qin':
                 # Note 1: slice(0,25) is applied to plot just the first quarter of the field
-                # in an attempt to retrieve something comparable to https://dtcenter.ucar.edu/com-GSI/users/docs/presentations/2011_tutorial/L8_06302011-BkgObsErrs-DarylKleist.pdf
+                #         in an attempt to retrieve something comparable to https://dtcenter.ucar.edu/com-GSI/users/docs/presentations/2011_tutorial/L8_06302011-BkgObsErrs-DarylKleist.pdf
                 # Note 2: multiplying by 1e2 (100) to make it comparable to the above document
                 ampqin = lmatrix[i].amplitudes[str(rec)]*1e2
                 if eqrange:
@@ -338,7 +338,7 @@ def plot_hscales(lmatrix, rec, **kwargs):
         else:
             ax = plt.subplot(spec[i])
        
-        # m -> km (to make it consistent with https://dtcenter.ucar.edu/com-GSI/users/docs/presentations/2011_tutorial/L8_06302011-BkgObsErrs-DarylKleist.pdf
+        # m -> km to make it consistent with https://dtcenter.ucar.edu/com-GSI/users/docs/presentations/2011_tutorial/L8_06302011-BkgObsErrs-DarylKleist.pdf
         hscl = lmatrix[i].hscales[str(rec)]*1e-3
     
         if rec == 'sst':  

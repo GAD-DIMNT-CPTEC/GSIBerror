@@ -145,7 +145,7 @@ class Berror(object):
                         ('pad62', '>i4'), ('hsstin_ps', sst2d), ('pad63', '>i4') ]   
     
         dt_obj = np.dtype(dt)#, align=True) # align=True should be automatic (?) 
-                                            # accounts fo the 4 bytes padding (before and after the records)
+                                            # accounts for 4 bytes padding (before and after the records)
     
         # Opens the file again to read all the records
         with open(self.file_name, 'rb') as ftmp:
@@ -221,7 +221,7 @@ class Berror(object):
         
         #
         # Records reading - Horizontal length scales (in meters) -> the in plot_functions.py script, the horizontal length scales
-        #                                                           are divides by 1000
+        #                                                           are divided by 1000
         #
         
         hscales = {}

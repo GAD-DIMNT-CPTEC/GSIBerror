@@ -6,6 +6,8 @@ setup(
     url='https://gad-dimnt-cptec.github.io/GSIBerror',
     author='Carlos Frederico Bastarz',
     author_email='carlos.bastarz@inpe.br',
+    url = "https://github.com/GAD-DIMNT-CPTEC/GSIBerror",
+    license = "CC BY-NC-SA-4.0",
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     description='A Python class to read the records and attributes from the background error covariance matrices compatible with the Gridpoint Statistical Interpolation in the .gcv file format.',

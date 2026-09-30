@@ -106,41 +106,41 @@ class Berror(object):
                         ('pad2', '>i4'), ('bgvin', s2d),
                         ('pad3', '>i4'), ('wgvin', s2d), 
                        
-                        ('pad4', '>i4'), ('sf', '|a5'), ('sig_sf', '>i4'), ('pad5', '>i4'), 
+                        ('pad4', '>i4'), ('sf', 'S5'), ('sig_sf', '>i4'), ('pad5', '>i4'),
                         ('pad6', '>i4'), ('corzin_sf', s2d), ('pad7', '>i4'), 
                         ('pad8', '>i4'), ('hscalesin_sf', s2d), ('pad9', '>i4'), 
                         ('pad10', '>i4'), ('vscalesin_sf', s2d), ('pad11', '>i4'), 
                    
-                        ('pad12', '>i4'), ('vp', '|a5'), ('sig_vp', '>i4'), ('pad13', '>i4'),
+                        ('pad12', '>i4'), ('vp', 'S5'), ('sig_vp', '>i4'), ('pad13', '>i4'),
                         ('pad14', '>i4'), ('corzin_vp', s2d), ('pad15', '>i4'), 
                         ('pad16', '>i4'), ('hscalesin_vp', s2d), ('pad17', '>i4'), 
                         ('pad18', '>i4'), ('vscalesin_vp', s2d), ('pad19', '>i4'), 
                    
-                        ('pad20', '>i4'), ('t', '|a5'), ('sig_t', '>i4'), ('pad21', '>i4'),
+                        ('pad20', '>i4'), ('t', 'S5'), ('sig_t', '>i4'), ('pad21', '>i4'),
                         ('pad22', '>i4'), ('corzin_t', s2d), ('pad23', '>i4'), 
                         ('pad24', '>i4'), ('hscalesin_t', s2d), ('pad25', '>i4'), 
                         ('pad26', '>i4'), ('vscalesin_t', s2d), ('pad27', '>i4'), 
                    
-                        ('pad28', '>i4'), ('q', '|a5'), ('sig_q', '>i4'), ('pad29', '>i4'),
+                        ('pad28', '>i4'), ('q', 'S5'), ('sig_q', '>i4'), ('pad29', '>i4'),
                         ('pad30', '>i4'), ('corzin_q', s2d), ('corqin_q', s2d), ('pad31', '>i4'), 
                         ('pad32', '>i4'), ('hscalesin_q', s2d), ('pad33', '>i4'), 
                         ('pad34', '>i4'), ('vscalesin_q', s2d), ('pad35', '>i4'), 
                    
-                        ('pad36', '>i4'), ('oz', '|a5'), ('sig_oz', '>i4'), ('pad37', '>i4'),
+                        ('pad36', '>i4'), ('oz', 'S5'), ('sig_oz', '>i4'), ('pad37', '>i4'),
                         ('pad38', '>i4'), ('corzin_oz', s2d), ('pad39', '>i4'), 
                         ('pad40', '>i4'), ('hscalesin_oz', s2d), ('pad41', '>i4'), 
                         ('pad42', '>i4'), ('vscalesin_oz', s2d), ('pad43', '>i4'), 
                                       
-                        ('pad44', '>i4'), ('cw', '|a5'), ('sig_cw', '>i4'), ('pad45', '>i4'),
+                        ('pad44', '>i4'), ('cw', 'S5'), ('sig_cw', '>i4'), ('pad45', '>i4'),
                         ('pad46', '>i4'), ('corzin_cw', s2d), ('pad47', '>i4'), 
                         ('pad48', '>i4'), ('hscalesin_cw', s2d), ('pad49', '>i4'), 
                         ('pad50', '>i4'), ('vscalesin_cw', s2d), ('pad51', '>i4'), 
                    
-                        ('pad52', '>i4'), ('ps', '|a5'), ('sig_ps', '>i4'), ('pad53', '>i4'), 
+                        ('pad52', '>i4'), ('ps', 'S5'), ('sig_ps', '>i4'), ('pad53', '>i4'),
                         ('pad54', '>i4'), ('corpin_ps', tnlat), ('pad55', '>i4'), 
                         ('pad56', '>i4'), ('hscalespin_ps', tnlat), ('pad57', '>i4'), 
                    
-                        ('pad58', '>i4'), ('sst', '|a5'), ('sig_sst', '>i4'), ('pad59', '>i4'),
+                        ('pad58', '>i4'), ('sst', 'S5'), ('sig_sst', '>i4'), ('pad59', '>i4'),
                         ('pad60', '>i4'), ('corsstin_sst', sst2d), ('pad61', '>i4'), 
                         ('pad62', '>i4'), ('hsstin_ps', sst2d), ('pad63', '>i4') ]   
     

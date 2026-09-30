@@ -1,33 +1,53 @@
 #! /usr/bin/env python3
 
+from pathlib import Path
+
 import numpy as np
 import xarray as xr
 
-from .plot_functions import var_name, global_minmax, plot_reg_coeffs, plot_amplitudes, plot_hscales, plot_vscales
+from .plot_functions import (
+    var_name,
+    global_minmax,
+    plot_reg_coeffs,
+    plot_amplitudes,
+    plot_hscales,
+    plot_vscales,
+)
 
-class Berror(object):   
+__all__ = [
+    "Berror",
+    "global_minmax",
+    "plot_amplitudes",
+    "plot_hscales",
+    "plot_reg_coeffs",
+    "plot_vscales",
+    "var_name",
+]
+
+
+class Berror:
     """
     Berror
     ======
-        
-    Class with methods to read all the records of a GSI compatible background error covariance matrix (.gcv format).    
 
-    """    
-    
+    Class with methods to read all the records of a GSI compatible background error covariance matrix (.gcv format).
+
+    """
+
     def __init__(self, file_name):
-        self.file_name = file_name
-        #self._my_name = ''
-    
+        self.file_name = str(file_name)
+        self._name = Path(self.file_name).name
+
     def read_records(self):
         """
         read_records
         ------------
-        
+
         This method reads the first three records of the background error covariance matrix (nlat, nlon and nlev).
         These records are used to calculate the size of the remainder records from the matrix. All attributes read from
         the matrix are provided by this function. The plotting of the records are made through the use of the xarray's 'plot()'
         method; depending on the use, it can be necessary to to load the matplotlib and cartopy modules.
-        
+
         Input parameters
         ----------------
             None.
@@ -35,68 +55,86 @@ class Berror(object):
         Result
         ------
             bfile: object created with the records and attributes from the background error covariance matrix (see the list below)
-                   
+
         Available attributes
         --------------------
             file_name         : string with the name of the file
-            nlat              : integer with the number of latitude points 
-            nlon              : integer with the number of longitude points 
+            nlat              : integer with the number of latitude points
+            nlon              : integer with the number of longitude points
             nlev              : integer with the number of vertical levels
             lats              : nd-array with the latitude values (-90 to 90)
             lons              : nd-array with the longitude values (0 to 360)
             levs              : nd-array with the vertical levels (1 to nlev)
             amplitudes        : dicionary with the xarrays for the control variables amplitudes
             amplitudes_names  : names of the variables in the amplitudes dictionary
-            balprojs          : dictionary with xarrays for the regression coefficients matrices for the temperature, 
+            balprojs          : dictionary with xarrays for the regression coefficients matrices for the temperature,
                                 surface pressure and velocity potential
             hscales           : dictionary with xarrays for the horizontal length scales
             hscales_var_names : names of the variables in the hscales dictionary
             vscales           : dictionary with xarrays for the vertical length scales
             vscales_var_names : names of the variables in the vscales dictionary
-                    
+
         Use
         ---
             import gsiberror as gb
-        
-            bfile = gb.Berror('arquivo_matriz_B.gcv')
-        
-            bfile.read_records()
-            
-            bfile.nlat, bfile.nlon, bfile.nlev
-            
-            bfile.amplitudes_names
-            
-            bfile.amplitudes['sf']
-            
-            bfile_amp_sf = bfile.amplitudes['sf']
-            
-            bfile_amp_sf.plot.contourf()    
-        """
-    
-        # Reads the first three records to define the grid
-        dt = np.dtype([ ('grid', '3>i4') ])
 
-        with open(self.file_name, 'rb') as ftmp:
-            fobj = np.fromfile(ftmp, dtype=dt, count=3, offset=4)  
-        
+            bfile = gb.Berror('arquivo_matriz_B.gcv')
+
+            bfile.read_records()
+
+            bfile.nlat, bfile.nlon, bfile.nlev
+
+            bfile.amplitudes_names
+
+            bfile.amplitudes['sf']
+
+            bfile_amp_sf = bfile.amplitudes['sf']
+
+            bfile_amp_sf.plot.contourf()
+        """
+
+        # Reads the first three records to define the grid
+        dt = np.dtype([("grid", "3>i4")])
+
+        try:
+            with open(self.file_name, "rb") as ftmp:
+                if ftmp.read(40).startswith(b"version https://git-lfs.github.com"):
+                    raise ValueError(
+                        f"{self.file_name!r} is a Git LFS pointer, not GCV data; "
+                        "run 'git lfs pull' first"
+                    )
+                ftmp.seek(0)
+                fobj = np.fromfile(ftmp, dtype=dt, count=1, offset=4)
+        except OSError as exc:
+            raise OSError(f"Unable to read GCV file {self.file_name!r}") from exc
+
+        if fobj.size != 1:
+            raise ValueError(f"Invalid or truncated GCV header in {self.file_name!r}")
+
         # Calculate the coordinates for lats, lons and levs dimensions
-        nlev = fobj[0]['grid'][0]
-        nlat = fobj[0]['grid'][1]
-        nlon = fobj[0]['grid'][2]
-       
+        nlev = fobj[0]["grid"][0]
+        nlat = fobj[0]["grid"][1]
+        nlon = fobj[0]["grid"][2]
+
+        if nlev <= 0 or nlat <= 0 or nlon <= 0:
+            raise ValueError(
+                f"Invalid GCV grid dimensions: nlev={nlev}, nlat={nlat}, nlon={nlon}"
+            )
+
         self.nlat = nlat
         self.nlon = nlon
         self.nlev = nlev
-    
-        self.lats = np.linspace(-90,90, self.nlat)
-        self.lons = np.linspace(0,360, self.nlon)
-        self.levs = np.arange(1, self.nlev+1)
-        
+
+        self.lats = np.linspace(-90, 90, self.nlat)
+        # A global cyclic grid must not contain both 0 and 360 degrees.
+        self.lons = np.linspace(0, 360, self.nlon, endpoint=False)
+        self.levs = np.arange(1, self.nlev + 1)
+
         # Define the records sizes from within the file ('>f4' indicates 32 bits floats, big endian)
-        tnlat = str(self.nlat) + '>f4'
-        s2d = str(self.nlat*self.nlev) + '>f4'
-        sst2d = str(self.nlat*self.nlon) + '>f4'
-        s3d = str(self.nlat*self.nlev*self.nlev) + '>f4'
+        tnlat = str(self.nlat) + ">f4"
+        s2d = str(self.nlat * self.nlev) + ">f4"
+        sst2d = str(self.nlat * self.nlon) + ">f4"
+        s3d = str(self.nlat * self.nlev * self.nlev) + ">f4"
 
         # Define a structure for the records within the file ('padX' = 4 bytes; '>i4' indicates 32 bits integers, big endian)
         # Maybe this isn't the best way to read the records but it is explicity, at least
@@ -148,162 +186,224 @@ class Berror(object):
                                             # accounts for 4 bytes padding (before and after the records)
     
         # Opens the file again to read all the records
-        with open(self.file_name, 'rb') as ftmp:
-            fobj = np.fromfile(ftmp, dtype=dt_obj, count=-1, offset=4) # count=-1 reads the whole file
-    
+        with open(self.file_name, "rb") as ftmp:
+            fobj = np.fromfile(ftmp, dtype=dt_obj, count=1, offset=4)
+
+        if fobj.size != 1:
+            raise ValueError(
+                f"Invalid or truncated GCV records in {self.file_name!r}; "
+                f"expected at least {dt_obj.itemsize + 4} bytes"
+            )
+
         #
-        # Records reading - Regression coefficients (balance projection matrices)  
+        # Records reading - Regression coefficients (balance projection matrices)
         #
-        
-        balprojs = {} 
-    
+
+        balprojs = {}
+
         self.balprojs = balprojs
-    
-        agvin = np.reshape(fobj[0]['agvin'], (self.nlat, self.nlev, self.nlev), order='F')
-        da_agvin = xr.DataArray(agvin, dims=['latitude', 'level', 'level_2'], coords={'latitude':self.lats, 'level':self.levs, 'level_2':self.levs})
-        da_agvin = da_agvin.transpose('level', 'latitude', 'level_2')
-        da_agvin = da_agvin.rename('agvin')
 
-        balprojs['agvin'] = da_agvin
-    
-        bgvin = np.reshape(fobj[0]['bgvin'], (self.nlat, self.nlev), order='F')
-        da_bgvin = xr.DataArray(bgvin, dims=['latitude', 'level'], coords={'latitude':self.lats, 'level':self.levs})
-        da_bgvin = da_bgvin.transpose('level', 'latitude')
-        da_bgvin = da_bgvin.rename('bgvin')
+        agvin = np.reshape(
+            fobj[0]["agvin"], (self.nlat, self.nlev, self.nlev), order="F"
+        )
+        da_agvin = xr.DataArray(
+            agvin,
+            dims=["latitude", "level", "level_2"],
+            coords={"latitude": self.lats, "level": self.levs, "level_2": self.levs},
+        )
+        da_agvin = da_agvin.transpose("level", "latitude", "level_2")
+        da_agvin = da_agvin.rename("agvin")
 
-        balprojs['bgvin'] = da_bgvin
-    
-        wgvin = np.reshape(fobj[0]['wgvin'], (self.nlat, self.nlev), order='F')
-        da_wgvin = xr.DataArray(wgvin, dims=['latitude', 'level'], coords={'latitude':self.lats, 'level':self.levs})
-        da_wgvin = da_wgvin.transpose('level', 'latitude')
-        da_wgvin = da_wgvin.rename('wgvin')
-    
-        balprojs['wgvin'] = da_wgvin      
-        
+        balprojs["agvin"] = da_agvin
+
+        bgvin = np.reshape(fobj[0]["bgvin"], (self.nlat, self.nlev), order="F")
+        da_bgvin = xr.DataArray(
+            bgvin,
+            dims=["latitude", "level"],
+            coords={"latitude": self.lats, "level": self.levs},
+        )
+        da_bgvin = da_bgvin.transpose("level", "latitude")
+        da_bgvin = da_bgvin.rename("bgvin")
+
+        balprojs["bgvin"] = da_bgvin
+
+        wgvin = np.reshape(fobj[0]["wgvin"], (self.nlat, self.nlev), order="F")
+        da_wgvin = xr.DataArray(
+            wgvin,
+            dims=["latitude", "level"],
+            coords={"latitude": self.lats, "level": self.levs},
+        )
+        da_wgvin = da_wgvin.transpose("level", "latitude")
+        da_wgvin = da_wgvin.rename("wgvin")
+
+        balprojs["wgvin"] = da_wgvin
+
         #
         # Records reading - Amplitudes (standard deviations)
         #
-        
+
         amplitudes = {}
-        
+
         self.amplitudes = amplitudes
-        
+
         amplitudes_names = {
-            'sf':  'corzin_sf', 
-            'vp':  'corzin_vp', 
-            't':   'corzin_t', 
-            'q':   'corzin_q', 
-            'qin': 'corqin_q',
-            'oz':  'corzin_oz', 
-            'ps':  'corpin_ps', 
-            'cw':  'corzin_cw', 
-            'sst': 'corsstin_sst',
+            "sf": "corzin_sf",
+            "vp": "corzin_vp",
+            "t": "corzin_t",
+            "q": "corzin_q",
+            "qin": "corqin_q",
+            "oz": "corzin_oz",
+            "ps": "corpin_ps",
+            "cw": "corzin_cw",
+            "sst": "corsstin_sst",
         }
-        
+
         self.amplitudes_names = amplitudes_names
-        
+
         # Loop over the variables to create a dictionary with xarrays for the amplitudes
         for var in amplitudes_names.items():
-            if var[0] == 'ps':
-                corzin_var = np.reshape(fobj[0][var[1]], (self.nlat), order='F')
-                da_corzin_var = xr.DataArray(corzin_var, dims=['latitude'], coords={'latitude':self.lats})
-            elif var[0] == 'sst':
-                corzin_var = np.reshape(fobj[0][var[1]], (self.nlat, self.nlon), order='F')
-                da_corzin_var = xr.DataArray(corzin_var, dims=['latitude', 'longitude'], coords={'latitude':self.lats, 'longitude':self.lons})
+            if var[0] == "ps":
+                corzin_var = np.reshape(fobj[0][var[1]], (self.nlat), order="F")
+                da_corzin_var = xr.DataArray(
+                    corzin_var, dims=["latitude"], coords={"latitude": self.lats}
+                )
+            elif var[0] == "sst":
+                corzin_var = np.reshape(
+                    fobj[0][var[1]], (self.nlat, self.nlon), order="F"
+                )
+                da_corzin_var = xr.DataArray(
+                    corzin_var,
+                    dims=["latitude", "longitude"],
+                    coords={"latitude": self.lats, "longitude": self.lons},
+                )
             else:
-                corzin_var = np.reshape(fobj[0][var[1]], (self.nlat, self.nlev), order='F')
-                da_corzin_var = xr.DataArray(corzin_var, dims=['latitude', 'level'], coords={'latitude':self.lats, 'level':self.levs})
-                da_corzin_var = da_corzin_var.transpose('level', 'latitude')
-            
+                corzin_var = np.reshape(
+                    fobj[0][var[1]], (self.nlat, self.nlev), order="F"
+                )
+                da_corzin_var = xr.DataArray(
+                    corzin_var,
+                    dims=["latitude", "level"],
+                    coords={"latitude": self.lats, "level": self.levs},
+                )
+                da_corzin_var = da_corzin_var.transpose("level", "latitude")
+
             da_corzin_var = da_corzin_var.rename(var[1])
-        
+
             amplitudes[var[0]] = da_corzin_var
-        
+
         #
         # Records reading - Horizontal length scales (in meters) -> the in plot_functions.py script, the horizontal length scales
         #                                                           are divided by 1000
         #
-        
+
         hscales = {}
-        
+
         self.hscales = hscales
-        
+
         hscales_var_names = {
-            'sf':  'hscalesin_sf', 
-            'vp':  'hscalesin_vp', 
-            't':   'hscalesin_t', 
-            'q':   'hscalesin_q', 
-            'oz':  'hscalesin_oz', 
-            'ps':  'hscalespin_ps', 
-            'cw':  'hscalesin_cw', 
-            'sst': 'hsstin_ps',
-        }        
-        
+            "sf": "hscalesin_sf",
+            "vp": "hscalesin_vp",
+            "t": "hscalesin_t",
+            "q": "hscalesin_q",
+            "oz": "hscalesin_oz",
+            "ps": "hscalespin_ps",
+            "cw": "hscalesin_cw",
+            "sst": "hsstin_ps",
+        }
+
         self.hscales_var_names = hscales_var_names
-        
+
         # Loop over the variables to create a dictionary with xarrays for the horizontal length scales
         for var in hscales_var_names.items():
-            if var[0] == 'ps':
-                hscalesin_var = np.reshape(fobj[0][var[1]], (self.nlat), order='F')
-                da_hscalesin_var = xr.DataArray(hscalesin_var, dims=['latitude'], coords={'latitude':self.lats})
-            elif var[0] == 'sst':
-                hscalesin_var = np.reshape(fobj[0][var[1]], (self.nlat, self.nlon), order='F')
-                da_hscalesin_var = xr.DataArray(hscalesin_var, dims=['latitude', 'longitude'], coords={'latitude':self.lats, 'longitude':self.lons})
+            if var[0] == "ps":
+                hscalesin_var = np.reshape(fobj[0][var[1]], (self.nlat), order="F")
+                da_hscalesin_var = xr.DataArray(
+                    hscalesin_var, dims=["latitude"], coords={"latitude": self.lats}
+                )
+            elif var[0] == "sst":
+                hscalesin_var = np.reshape(
+                    fobj[0][var[1]], (self.nlat, self.nlon), order="F"
+                )
+                da_hscalesin_var = xr.DataArray(
+                    hscalesin_var,
+                    dims=["latitude", "longitude"],
+                    coords={"latitude": self.lats, "longitude": self.lons},
+                )
             else:
-                hscalesin_var = np.reshape(fobj[0][var[1]], (self.nlat, self.nlev), order='F')
-                da_hscalesin_var = xr.DataArray(hscalesin_var, dims=['latitude', 'level'], coords={'latitude':self.lats, 'level':self.levs})
-                da_hscalesin_var = da_hscalesin_var.transpose('level', 'latitude')
-            
+                hscalesin_var = np.reshape(
+                    fobj[0][var[1]], (self.nlat, self.nlev), order="F"
+                )
+                da_hscalesin_var = xr.DataArray(
+                    hscalesin_var,
+                    dims=["latitude", "level"],
+                    coords={"latitude": self.lats, "level": self.levs},
+                )
+                da_hscalesin_var = da_hscalesin_var.transpose("level", "latitude")
+
             da_hscalesin_var = da_hscalesin_var.rename(var[1])
-        
-            hscales[var[0]] = da_hscalesin_var           
-        
+
+            hscales[var[0]] = da_hscalesin_var
+
         #
         # Records reading - Vertical length scales
         #
-        
+
         vscales = {}
-        
+
         self.vscales = vscales
 
         vscales_var_names = {
-            'sf':  'vscalesin_sf', 
-            'vp':  'vscalesin_vp', 
-            't':   'vscalesin_t', 
-            'q':   'vscalesin_q', 
-            'oz':  'vscalesin_oz',  
-            'cw':  'vscalesin_cw', 
-        }         
-        
+            "sf": "vscalesin_sf",
+            "vp": "vscalesin_vp",
+            "t": "vscalesin_t",
+            "q": "vscalesin_q",
+            "oz": "vscalesin_oz",
+            "cw": "vscalesin_cw",
+        }
+
         self.vscales_var_names = vscales_var_names
-        
+
         # Loop over the variables to create a dictionary with xarrays for the vertical length scales
         for var in vscales_var_names.items():
-            if var[0] == 'ps':
-                vscalesin_var = np.reshape(fobj[0][var[1]], (self.nlat), order='F')
-                da_vscalesin_var = xr.DataArray(vscalesin_var, dims=['latitude'], coords={'latitude':self.lats})
-            elif var[0] == 'sst':
-                vscalesin_var = np.reshape(fobj[0][var[1]], (self.nlat, self.nlon), order='F')
-                da_vscalesin_var = xr.DataArray(vscalesin_var, dims=['latitude', 'longitude'], coords={'latitude':self.lats, 'longitude':self.lons})
+            if var[0] == "ps":
+                vscalesin_var = np.reshape(fobj[0][var[1]], (self.nlat), order="F")
+                da_vscalesin_var = xr.DataArray(
+                    vscalesin_var, dims=["latitude"], coords={"latitude": self.lats}
+                )
+            elif var[0] == "sst":
+                vscalesin_var = np.reshape(
+                    fobj[0][var[1]], (self.nlat, self.nlon), order="F"
+                )
+                da_vscalesin_var = xr.DataArray(
+                    vscalesin_var,
+                    dims=["latitude", "longitude"],
+                    coords={"latitude": self.lats, "longitude": self.lons},
+                )
             else:
-                vscalesin_var = np.reshape(fobj[0][var[1]], (self.nlat, self.nlev), order='F')
-                da_vscalesin_var = xr.DataArray(vscalesin_var, dims=['latitude', 'level'], coords={'latitude':self.lats, 'level':self.levs})
-                da_vscalesin_var = da_vscalesin_var.transpose('level', 'latitude')
-            
+                vscalesin_var = np.reshape(
+                    fobj[0][var[1]], (self.nlat, self.nlev), order="F"
+                )
+                da_vscalesin_var = xr.DataArray(
+                    vscalesin_var,
+                    dims=["latitude", "level"],
+                    coords={"latitude": self.lats, "level": self.levs},
+                )
+                da_vscalesin_var = da_vscalesin_var.transpose("level", "latitude")
+
             da_vscalesin_var = da_vscalesin_var.rename(var[1])
-        
+
             vscales[var[0]] = da_vscalesin_var
 
-#    @property
+    #    @property
     def my_name(self, name):
-        #return self._my_name   
-        self.my_name = str(name) 
-#        return self.my_name 
-            
-#    @my_name.setter
-#    def my_name(self, name):
-#        self._my_name = str(name)    
-        
-#    @property
-    def get_name(self):            
-        return self.my_name        
+        """Set the human-readable name used by the plotting helpers.
+
+        This method is retained for backwards compatibility with the notebooks.
+        Unlike the previous implementation, it does not overwrite itself.
+        """
+        self._name = str(name)
+        return self
+
+    def get_name(self):
+        """Return the configured display name (the filename by default)."""
+        return self._name

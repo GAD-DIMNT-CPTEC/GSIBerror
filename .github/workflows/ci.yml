@@ -1,14 +1,31 @@
-name: ci  
+name: ci
 on:
   push:
     branches:
       - main
+  pull_request:
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -e ".[dev]"
+      - run: ruff check . --exclude notebooks
+      - run: ruff format --check gsiberror tests setup.py
+      - run: pytest
+
+  deploy:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: 3.x 
       - run: pip install mkdocs-material 

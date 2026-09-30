@@ -9,9 +9,9 @@ dependencies:
   - jupyter_client
   - matplotlib
   - notebook
-  - numpy>=1.20.3
+  - numpy>=1.22
   - pip
-  - python=3.8.2
+  - python>=3.9.18
   - xarray
   - pip:
     - -e .  

@@ -1,8 +1,6 @@
-#! /usr/bin/env python3
-
-import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
+import matplotlib.pyplot as plt
 
 
 # This function defines the names of the variables and mnemonics
@@ -55,20 +53,11 @@ def plot_reg_coeffs(lmatrix, rec, lev, **kwargs):
     if rec not in {"agvin", "bgvin", "wgvin"}:
         raise ValueError("rec must be one of 'agvin', 'bgvin', or 'wgvin'")
 
-    if "eqrange" in kwargs:
-        eqrange = kwargs["eqrange"]
-    else:
-        eqrange = False
+    eqrange = kwargs.get("eqrange", False)
 
-    if "suptitle" in kwargs:
-        suptitle = kwargs["suptitle"]
-    else:
-        suptitle = False
+    suptitle = kwargs.get("suptitle", False)
 
-    if "savefig" in kwargs:
-        savefig = kwargs["savefig"]
-    else:
-        savefig = False
+    savefig = kwargs.get("savefig", False)
 
     len_lmatrix = len(lmatrix)
 
@@ -198,25 +187,13 @@ def plot_amplitudes(lmatrix, rec, **kwargs):
         raise ValueError("At least one Berror matrix is required")
     var_name(rec)
 
-    if "eqrange" in kwargs:
-        eqrange = kwargs["eqrange"]
-    else:
-        eqrange = False
+    eqrange = kwargs.get("eqrange", False)
 
-    if "profile" in kwargs:
-        profile = kwargs["profile"]
-    else:
-        profile = False
+    profile = kwargs.get("profile", False)
 
-    if "suptitle" in kwargs:
-        suptitle = kwargs["suptitle"]
-    else:
-        suptitle = False
+    suptitle = kwargs.get("suptitle", False)
 
-    if "savefig" in kwargs:
-        savefig = kwargs["savefig"]
-    else:
-        savefig = False
+    savefig = kwargs.get("savefig", False)
 
     if rec == "ps" or rec == "sst":
         profile = False
@@ -403,20 +380,11 @@ def plot_hscales(lmatrix, rec, **kwargs):
         raise ValueError("At least one Berror matrix is required")
     var_name(rec)
 
-    if "eqrange" in kwargs:
-        eqrange = kwargs["eqrange"]
-    else:
-        eqrange = False
+    eqrange = kwargs.get("eqrange", False)
 
-    if "suptitle" in kwargs:
-        suptitle = kwargs["suptitle"]
-    else:
-        suptitle = False
+    suptitle = kwargs.get("suptitle", False)
 
-    if "savefig" in kwargs:
-        savefig = kwargs["savefig"]
-    else:
-        savefig = False
+    savefig = kwargs.get("savefig", False)
 
     len_lmatrix = len(lmatrix)
 
@@ -536,20 +504,11 @@ def plot_vscales(lmatrix, rec, **kwargs):
         raise ValueError("At least one Berror matrix is required")
     var_name(rec)
 
-    if "eqrange" in kwargs:
-        eqrange = kwargs["eqrange"]
-    else:
-        eqrange = False
+    eqrange = kwargs.get("eqrange", False)
 
-    if "suptitle" in kwargs:
-        suptitle = kwargs["suptitle"]
-    else:
-        suptitle = False
+    suptitle = kwargs.get("suptitle", False)
 
-    if "savefig" in kwargs:
-        savefig = kwargs["savefig"]
-    else:
-        savefig = False
+    savefig = kwargs.get("savefig", False)
 
     len_lmatrix = len(lmatrix)
 

@@ -15,6 +15,7 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
+          cache-dependency-path: setup.py
       - run: pip install -e ".[dev]"
       - run: ruff check . --exclude notebooks
       - run: ruff format --check gsiberror tests setup.py

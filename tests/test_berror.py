@@ -4,7 +4,6 @@ import pytest
 
 import gsiberror as gb
 
-
 DATA = Path(__file__).parents[1] / "data"
 SAMPLE = DATA / "global_berror.l64y386.f77-ncep-dtc.gcv"
 

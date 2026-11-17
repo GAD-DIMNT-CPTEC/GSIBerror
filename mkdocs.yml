@@ -18,6 +18,7 @@ nav:
     - GSIBerror: pt/index.md
     - Instalação: pt/instalacao.md
     - Uso: pt/uso.md
+    - Publicação: pt/publicacao.md
 
 #Configuration
 theme: 
